@@ -219,7 +219,7 @@ body {
 <div class="mobile-header">
   <button class="hamburger" onclick="toggleSidebar()">&#9776;</button>
   <h1>bMSE</h1>
-  <span class="mobile-progress" id="mobileProgress">0/21</span>
+  <span class="mobile-progress" id="mobileProgress">0/23</span>
 </div>
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
@@ -231,7 +231,7 @@ body {
   <div class="progress-bar-container">
     <div class="progress-label">
       <span>Progreso</span>
-      <span id="progressText">0 / 21</span>
+      <span id="progressText">0 / 23</span>
     </div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
@@ -339,6 +339,36 @@ const DIMS = [
     ]
   },
   {
+    id:'NC.perfil', code:'NC', title:'Perfil Neurocognitivo Bedside', type:'profile',
+    scores:{'0':'Normal','-1':'Déficit leve / aislado','-2':'Déficit franco / múltiple'},
+    details:{
+      '0':{nivel:'Normal',loQueVes:'Fluencia ≥18, digit 6F/4B, TMT-A <30s TMT-B <75s ratio <3.0, clock normal, recall 3/3.',loQueDice:'Sin queja cognitiva. Responde con fluidez.',contra:'',clasica:''},
+      '-1':{nivel:'Déficit leve / aislado',loQueVes:'Un dominio afectado: fluencia 12-17, o digit backward ≤3, o TMT ratio >3.0, o recall libre 2/3 con cues OK, o clock con error menor.',loQueDice:'"Me cuesta un poco pensar." "A veces se me olvidan las cosas."',contra:'El clínico nota esfuerzo cognitivo.',clasica:''},
+      '-2':{nivel:'Déficit franco / múltiple',loQueVes:'Múltiples dominios afectados: fluencia <12, digit ≤4F/≤2B, TMT-B >180s, clock con errores graves, recall libre ≤1/3.',loQueDice:'"No puedo pensar." O no puede completar las tareas.',contra:'Preocupación: evaluación neuropsicológica formal indicada.',clasica:''}
+    },
+    frameworks:{
+      headers:['','NC −2','NC −1','NC 0','Componentes'],
+      rows:[
+        ['Fluencia','<12 animales','12-17 animales','≥18 animales','Total, clusters, switches, intrusiones, repeticiones'],
+        ['Digit span','≤4F / ≤2B','5F / 3B','6F / 4B','Forward (atención), Backward (WM), ratio F-B'],
+        ['TMT','B >180s','Ratio B/A >3.0','A <30s, B <75s','A (velocidad), B (set-shifting), ratio (ejecutivo)'],
+        ['Clock','Errores graves','Error menor','Normal','Neglect, planificación, abstracción, visuoespacial'],
+        ['3-Word Recall','≤1/3 libre','2/3 libre','3/3 libre','Registro, recall libre, recall con cues (encoding vs retrieval)']
+      ]
+    },
+    guide:['Fluencia semántica: "Dígame todos los animales que pueda en 60 segundos" (contar total, clusters, switches)','Digit span forward: repetir secuencia (ej. 5-8-2-6-4). Backward: repetir al revés (ej. 7-2-9)','TMT oral: "Cuente alternando números y letras: 1-A-2-B-3-C..." (cronometrar)','Clock Drawing: "Dibuje un reloj que marque las 11:10"','3-Word Recall: "Repita: CASA, ÁRBOL, PELOTA" → preguntar a los 3-5 min','Orientación: ¿Qué día es? ¿Dónde estamos? ¿Cómo se llama? ¿Por qué está aquí?','Fluctuación: ¿varía la alerta durante la entrevista?'],
+    specifiers:[
+      {id:'nc_conciencia',type:'radio',label:'Conciencia',options:['Clara','Obnubilada','Estuporosa'],showWhen:'always'},
+      {id:'nc_orientacion',type:'radio',label:'Orientación',options:['4/4','Desorienta tiempo','Desorienta lugar','Desorienta persona','Desorienta situación'],showWhen:'always'},
+      {id:'nc_fluctuacion',type:'checkbox',label:'[Fluctuación] Alerta varía durante entrevista'},
+      {id:'nc_fluencia',type:'checkbox',label:'[Fluencia↓]',sub:{type:'text',placeholder:'Total, clusters, switches'}},
+      {id:'nc_digit',type:'checkbox',label:'[Digit↓]',sub:{type:'text',placeholder:'F/B (ej. 5F/3B)'}},
+      {id:'nc_tmt',type:'checkbox',label:'[TMT↓]',sub:{type:'text',placeholder:'A=__s B=__s ratio=__'}},
+      {id:'nc_clock',type:'checkbox',label:'[Clock↓]',sub:{type:'text',placeholder:'Error: neglect/planif/abstracción/visuoesp'}},
+      {id:'nc_recall',type:'checkbox',label:'[Recall↓]',sub:{type:'select',options:['Retrieval↓ (cues mejora)','Encoding↓ (cues no mejora)','Registro falla']}}
+    ]
+  },
+  {
     id:'F1.expresividad', code:'F1', title:'Expresividad comunicativa', type:'bipolar',
     scores:{'-2':'Flat','-1':'Restricted','0':'Broad (proporcional)','+1':'Exaggerated','+2':'Labile/desbordada'},
     details:{
@@ -394,6 +424,34 @@ const DIMS = [
     ]
   },
   {
+    id:'F2.sensorial', code:'F2', title:'Integración sensorial', type:'bipolar',
+    scores:{'-2':'Shutdown sensorial','-1':'Filtrado excesivo','0':'Calibrado','+1':'SOR / filtrado insuficiente','+2':'Inundación / aberrant salience'},
+    details:{
+      '-2':{nivel:'Shutdown sensorial',loQueVes:'No procesa input externo. No responde a estímulos sensoriales relevantes. Mundo interno domina. "Como si no estuviera aquí".',loQueDice:'No responde a voz/ruido. Mirada vacía. Analgesia.',contra:'Preocupación: "no está aquí". Urgencia de reactivar.',clasica:'AMDP: 51 (alucinaciones corporales — ausencia respuesta). Fish: Estupor (sin respuesta sensorial). Forbes: Embotamiento sensorial, anestesia.'},
+      '-1':{nivel:'Filtrado excesivo',loQueVes:'Mundo externo amortiguado: "todo suena lejano", "los colores están apagados", "como detrás de vidrio".',loQueDice:'"Todo se siente lejano." "Los colores están apagados." "Como detrás de vidrio."',contra:'Sensación de distancia. El paciente parece presente pero desconectado.',clasica:'Fish: Despersonalización/desrealización sensorial. Forbes: Embotamiento sensorial.'},
+      '0':{nivel:'Calibrado',loQueVes:'Percibe lo relevante, filtra lo irrelevante. Intensidad sensorial proporcional al estímulo.',loQueDice:'No reporta anomalía sensorial.',contra:'Entrevista cómoda.',clasica:''},
+      '+1':{nivel:'SOR / filtrado insuficiente',loQueVes:'Todo llega: hiperacusia, fotosensibilidad, sensación de overload. PLEs leves (sombras, murmullos). Distractibilidad sensorial.',loQueDice:'"Los ruidos me molestan mucho." "Las luces me hacen daño." "A veces veo sombras por el rabillo del ojo."',contra:'El clínico nota sensibilidad exagerada a estímulos ambientales.',clasica:'RDoC: Perception construct (auditory, visual). Forbes: Sensibilidad sensorial, hiperacusia. DSM-5: Attenuated psychosis syndrome.'},
+      '+2':{nivel:'Inundación / aberrant salience',loQueVes:'Alucinaciones formadas. Contenido interno con cualidad perceptiva. Todo externo tiene significado. Aberrant salience plena.',loQueDice:'"Escucho voces claras." "Veo cosas que otros no ven." "Todo tiene un significado especial."',contra:'Alarma: quiebre perceptivo. Evaluar F7 simultáneamente.',clasica:'AMDP: 46-51 (alucinaciones por modalidad). ICD-11: MB27.2 (alucinaciones). DSM-5: SZ criterio A.2 (hallucinations). Fish: Alucinación, Alucinosis.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','51 (ausencia respuesta)','—','—','—','46-51 (alucinaciones por modalidad)'],
+        ['ICD-11','—','—','—','—','MB27.2 (alucinaciones), MB27.20-27.25'],
+        ['DSM-5','—','—','—','Attenuated psychosis syndrome','SZ criterio A.2 (hallucinations)'],
+        ['Fish (2019)','Estupor (sin respuesta sensorial)','—','—','Pseudoalucinación, Ilusión','Alucinación, Alucinosis'],
+        ['RDoC','—','—','—','Perception construct (auditory, visual)','Perception construct (distorted)'],
+        ['Forbes (2024)','Embotamiento sensorial, anestesia','—','—','Sensibilidad sensorial, hiperacusia','Alucinaciones']
+      ]
+    },
+    guide:['¿Los ruidos le molestan más de lo normal? ¿Las luces?','¿Siente que el mundo se ve lejano, apagado, como detrás de vidrio?','¿Ha visto sombras, oído murmullos o sentido presencias?','¿Escucha voces o ve cosas que otros no ven?','¿Siente cosas en el cuerpo sin causa (hormigueo, ser tocado)?','¿Percibe olores o sabores sin fuente?'],
+    specifiers:[
+      {id:'sens_modal',type:'radio',label:'Modalidad',options:['[auditivo]','[visual]','[táctil]','[olfatorio/gustativo]','[interoceptivo]','[multimodal]'],showWhen:'!=0'},
+      {id:'sens_mec_neg',type:'radio',label:'Mecanismo (polo −)',options:['[disociativo]','[depresivo]','[catatónico]','[neurológico]'],showWhen:'<0'},
+      {id:'sens_mec_pos',type:'radio',label:'Mecanismo (polo +)',options:['[SOR]','[PLEs]','[alucinatorio]','[intoxicación]'],showWhen:'>0'}
+    ]
+  },
+  {
     id:'NM.coordinación', code:'NM', title:'Perfil Neuromotor', type:'profile',
     scores:{'0':'Normal','-1':'Torpeza leve / NSS aislados','-2':'Descoordinación franca / NSS múltiples'},
     details:{
@@ -418,32 +476,6 @@ const DIMS = [
       {id:'acatisia',type:'checkbox',label:'[acatisia]',sub:{type:'select',options:['subjetiva','objetiva','mixta']}},
       {id:'parkinsonismo',type:'checkbox',label:'[parkinsonismo]',sub:{type:'select',options:['espontáneo ⚠️','farmacológico']}},
       {id:'tremor',type:'checkbox',label:'[tremor]',sub:{type:'select',options:['reposo','postural','intencional']}}
-    ]
-  },
-  {
-    id:'F5a.control', code:'F5a', title:'Control atencional descendente', type:'bipolar',
-    scores:{'-2':'Sub-regulado','-1':'Foco inestable','0':'Flexible','+1':'Foco sticky','+2':'Sobre-regulado'},
-    details:{
-      '-2':{nivel:'Sub-regulado',loQueVes:'No completa una frase sin saltar. Responde a todo estímulo. Entrevista caótica. Narrativa fragmentada.',loQueDice:'"No puedo concentrarme en nada." "¿Qué me estaba preguntando?"',contra:'Frustración: el clínico no logra mantener estructura. Impulso de simplificar.',clasica:''},
-      '-1':{nivel:'Foco inestable',loQueVes:'Se distrae pero recupera. Pierde detalles. Necesita repetición. Latencia variable.',loQueDice:'"A veces pierdo el hilo." "Me cuesta un poco."',contra:'Leve impaciencia. Necesidad de repetir.',clasica:''},
-      '0':{nivel:'Flexible',loQueVes:'Sigue conversación fluidamente. Cambia de tema cuando corresponde. Atento sin esfuerzo visible.',loQueDice:'"Estoy atento." Sigue sin reportar dificultad.',contra:'Cómoda, fluida.',clasica:''},
-      '+1':{nivel:'Foco sticky',loQueVes:'Monólogos. Vuelve al mismo tema. Cuesta redirigir. Pide "déjeme terminar" repetidamente.',loQueDice:'"Es que necesito explicar esto bien." "No puedo pasar a otra cosa hasta que termine."',contra:'Impaciencia: "no puedo sacarlo de ahí." Sensación de estar atrapado en el tema del paciente.',clasica:''},
-      '+2':{nivel:'Sobre-regulado',loQueVes:'No responde a redirección. Persevera en un tema/idea. Hiperfoco rígido visible. Ignora preguntas que cambien de tema.',loQueDice:'"No puedo sacarme esto de la cabeza." "Solo puedo pensar en una cosa." O no reporta — no se da cuenta que persevera.',contra:'Exasperación o resignación. El clínico deja de intentar redirigir.',clasica:''}
-    },
-    guide:['¿Puede seguir una pregunta completa sin perder el hilo?','¿Puede ser redirigido a otro tema?','¿Le cuesta concentrarse en las cosas que tiene que hacer?','¿Puede concentrarse bien en algo que le interesa mucho? (Si sí → TDAH pattern)','¿Le pasa que se queda "pegado" en algo y le cuesta cambiar a otra cosa?','Digit span backward: "Repita estos números al revés: 7-2-9"'],
-    specifiers:[{id:'oscila',type:'checkbox',label:'Oscila según estímulo (TDAH): −2↔+2 [stimulus-dependent]'}]
-  },
-  {
-    id:'F5b.captura', code:'F5b', title:'Captura atencional ascendente', type:'unipolar_pos',
-    scores:{'0':'Normal','+1':'Captura detectable','+2':'Captura severa'},
-    details:{
-      '0':{nivel:'Normal',loQueVes:'No se distrae por estímulos irrelevantes. Responde a interrupciones legítimas.',loQueDice:'No reporta distracción involuntaria.',contra:'',clasica:''},
-      '+1':{nivel:'Captura detectable',loQueVes:'Se distrae con ruidos leves [E]. O pausa y "se va" momentáneamente [I]. Recupera con esfuerzo.',loQueDice:'"A veces se me mete un pensamiento y me cuesta sacarlo." "Los ruidos me molestan más de lo normal."',contra:'',clasica:''},
-      '+2':{nivel:'Captura severa',loQueVes:'No puede mantener conversación por captura constante. Mirada fija (captura interna) o scanning constante (captura externa). No responde cuando está capturado.',loQueDice:'"No puedo parar de pensar en eso." "Todo me distrae." O no puede articular — está capturado en el momento.',contra:'',clasica:''}
-    },
-    guide:['¿Se distrae fácilmente con ruidos o cosas que pasan alrededor?','¿Le vienen pensamientos que no puede sacar de la cabeza? ¿Qué tipo?','Cuando eso le viene, ¿puede volver a lo que estaba haciendo, o lo atrapa completamente?'],
-    specifiers:[
-      {id:'captura_type',type:'radio',label:'Tipo de captura',options:['[E] Externa','[I:worry]','[I:rumia]','[I:obsesión]','[I:flashback]','[E+I]'],showWhen:'>=1'}
     ]
   },
   {
@@ -622,6 +654,34 @@ const DIMS = [
     guide:['¿Qué pasó la última vez que algo no salió como esperaba?','¿Se enoja fácilmente?','¿Le dicen que es explosivo o que todo le da igual?']
   },
   {
+    id:'F6.animo-meta', code:'F6', title:'Ánimo-meta', type:'bipolar',
+    scores:{'-2':'Tristeza vital / grief','-1':'Desánimo','0':'Proporcional','+1':'Elation','+2':'Euforia'},
+    details:{
+      '-2':{nivel:'Tristeza vital / grief',loQueVes:'Llanto incoercible o ausencia total de afecto positivo. Tristeza vital (Vitalgefühl). Desesperanza como componente prospectivo. Facies de dolor moral sostenido.',loQueDice:'"No siento nada." "Todo se acabó." "No va a mejorar." Yearning en PGD. Verbos sin futuro.',contra:'ALARMA: evaluar riesgo suicida si colapso prospectivo. El clínico siente peso, impotencia.',clasica:'AMDP: 63 (ánimo deprimido grave), 60 (pérdida de sentimientos), 62 (pérdida vitalidad). ICD-11: MB24.5 (depressed mood), MB23.A (llanto excesivo). Fish: Tristeza vital, Depresión endógena. Vallejo: Tristeza patológica. DSM-5: Criterio A1 MDD.'},
+      '-1':{nivel:'Desánimo',loQueVes:'Progreso percibido como insuficiente. Tristeza sostenida, pesimismo, desaliento. Funcionalidad reducida pero no colapsada.',loQueDice:'"Las cosas no van bien." "No creo que mejore." "Me cuesta todo." Tristeza sin desesperación total.',contra:'Preocupación calibrada: el clínico siente que el paciente sufre pero puede funcionar.',clasica:'AMDP: 63 (ánimo deprimido leve), 64 (desesperanza). ICD-11: MB22.2 (desmoralización), MB22.3 (desesperanza). Forbes: Ánimo deprimido.'},
+      '0':{nivel:'Proporcional',loQueVes:'Ánimo proporcional al contexto. Oscilante según eventos. Capacidad de sentir tristeza Y alegría según corresponda.',loQueDice:'Respuestas afectivas proporcionales. Puede hablar de cosas buenas y malas con tono congruente.',contra:'Entrevista cómoda, fluida.',clasica:''},
+      '+1':{nivel:'Elation',loQueVes:'Progreso percibido como excelente. Optimismo, sensación de logro, energía. Puede ser adaptativo o inicio de escalada.',loQueDice:'"Todo está saliendo bien." "Me siento muy bien." "Tengo mucha energía." Optimismo que puede ser proporcionado o excesivo.',contra:'Energía contagiosa. El clínico monitorea si escala.',clasica:'AMDP: 72 (autoestima aumentada leve). ICD-11: MB24.8 (ánimo elevado). Forbes: Elated mood.'},
+      '+2':{nivel:'Euforia',loQueVes:'Comparador descalibrado: evalúa todo como éxito. Euforia, expansividad, grandiosidad, elevated mood. Gasta como si tuviera infinito.',loQueDice:'"Todo es INCREÍBLE." "Soy invencible." "Nunca me he sentido mejor." Minimiza consecuencias.',contra:'El clínico siente que el paciente "está en otro planeta." Los familiares confirman cambio.',clasica:'AMDP: 66 (euforia), 45 (delirios grandeza), 72 (autoestima exagerada grave). ICD-11: MB24.6 (elevated mood), MB26.2 (grandiosidad). Fish: Manía, Éxtasis, Expansividad. Vallejo: Alegría patológica. DSM-5: Criterio A BD-I (elevated/expansive mood). Forbes: Elated mood, expansive mood.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','63 grave, 60 (pérdida sentimientos), 62, 70 (quejumbrería)','63 leve, 64 (desesperanza)','—','72 (autoestima↑ leve)','66 (euforia), 45 (delirios grandeza), 72 grave'],
+        ['ICD-11 MB','MB24.5 (depressed mood), MB23.A (llanto)','MB22.2 (desmoralización), MB22.3 (desesperanza)','—','—','MB24.6 (elevated mood), MB26.2 (grandiosidad)'],
+        ['HiTOP-SR','Ánimo deprimido, Distress-Dysphoria, Lasitud','—','Bienestar','—','Grandiosidad'],
+        ['Fish (2019)','Tristeza vital, Depresión endógena','—','—','—','Manía, Éxtasis, Expansividad'],
+        ['Vallejo (2025)','Tristeza patológica','—','—','—','Alegría patológica'],
+        ['DSM-5','Criterio A1 MDD (depressed mood)','—','—','—','Criterio A BD-I (elevated/expansive mood)'],
+        ['Forbes (2024)','Ánimo deprimido, vacío','—','—','—','Elated mood, expansive mood']
+      ]
+    },
+    guide:['¿Cómo se ha sentido de ánimo?','¿Ha tenido ganas de llorar o ha llorado sin control?','¿Siente que las cosas van bien en su vida? ¿Hacia dónde van?','¿Siente que todo le sale bien, que tiene una energía especial?','¿Ha perdido a alguien importante recientemente? ¿Cómo lo lleva?','¿Siente que la tristeza es "física", como un peso en el cuerpo?'],
+    specifiers:[
+      {id:'animo_meta',type:'radio',label:'Tipo de meta',options:['[relacional]','[identitaria]','[funcional]','[vital]'],showWhen:'!=0'},
+      {id:'animo_temp',type:'radio',label:'Temporalidad',options:['[agudo]','[crónico]','[cíclico]'],showWhen:'!=0'}
+    ]
+  },
+  {
     id:'F6.autoevaluación', code:'F6', title:'Autoevaluación', type:'bipolar',
     scores:{'-2':'Worthlessness / culpa nuclear','-1':'Autoevaluación negativa','0':'Realista','+1':'Autoestima elevada','+2':'Grandiosidad afectiva'},
     details:{
@@ -786,6 +846,33 @@ const DIMS = [
       {id:'canal_P',type:'checkbox',label:'[P] Pensamiento desorganizado/rígido'},
       {id:'canal_C',type:'checkbox',label:'[C] Conducta desorganizada/ritualizada'},
       {id:'canal_A',type:'checkbox',label:'[A] Afecto incongruente/restringido'}
+    ]
+  },
+  {
+    id:'G.sueno-ritmo', code:'G', title:'Sueño-ritmo', type:'bipolar',
+    scores:{'-2':'Colapso depresivo','-1':'Regulación descendente','0':'Regulado','+1':'Regulación ascendente','+2':'Colapso maníaco'},
+    details:{
+      '-2':{nivel:'Colapso depresivo',loQueVes:'Hipersomnia >10h o fragmentación no-reparadora. Fase adelantada: duerme <19h, despierta <3AM. Empeoramiento matutino severo. Inercia de sueño.',loQueDice:'"Duermo todo el día y no descanso." "Me despierto a las 3AM y no puedo volver a dormir." "Las mañanas son lo peor."',contra:'Preocupación: patrón de conservación energética. Melancolía si CORE+.',clasica:'AMDP: 105 (cansancio), hipersomnia implícita. Forbes: Hipersomnia, dificultad despertar. RDoC: Sleep-Wakefulness + Circadian Rhythms.'},
+      '-1':{nivel:'Regulación descendente',loQueVes:'9-10h o fragmentación leve. Fase adelantada leve. Matutino leve. Parcialmente no-reparador.',loQueDice:'"Duermo mucho pero no descanso." "Las mañanas me cuestan." "Me siento pesado al despertar."',contra:'Preocupación leve: el sueño no está cumpliendo su función reparadora.',clasica:''},
+      '0':{nivel:'Regulado',loQueVes:'6-9h, reparador. Timing alineado con entorno social. Sin patrón diurno patológico. Continuidad OK.',loQueDice:'"Duermo bien." "Me despierto descansado." Sin queja de sueño.',contra:'Entrevista cómoda.',clasica:''},
+      '+1':{nivel:'Regulación ascendente',loQueVes:'Insomnio leve: latencia 30-60min, 2+ despertares. Fase retrasada: duerme >1AM. Fragmentado, superficial.',loQueDice:'"Me cuesta dormir." "Me despierto varias veces." "No puedo apagar la cabeza de noche."',contra:'El clínico evalúa si es ansiedad, prodromo, o hábito.',clasica:'AMDP: 101 (conciliación), 102 (interrumpido), 103 (acortado). Forbes: Insomnio.'},
+      '+2':{nivel:'Colapso maníaco',loQueVes:'<4h totales, o reducida sin queja. Fase retrasada >3AM o irregular extremo (>4h variación). Vespertino severo o sin patrón.',loQueDice:'"No necesito dormir." "Duermo 3 horas y estoy perfecto." "No tengo horario." Sin queja — eso es lo preocupante.',contra:'ALARMA: necesidad de sueño reducida sin queja = cardinal de manía. Evaluar F6.ánimo-meta +2.',clasica:'AMDP: 104 (despertar precoz) + 103 (acortado sin queja). Forbes: Sueño temprano+despertar precoz, irregularidad. RDoC: Sleep-Wakefulness + Circadian Rhythms.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP','105 (cansancio), hipersomnia','—','—','101 (conciliación), 102 (interrumpido), 103 (acortado)','104 (despertar precoz) + 103 sin queja'],
+        ['Forbes','Hipersomnia, dificultad despertar','—','—','Insomnio','Irregularidad, sueño acortado'],
+        ['RDoC','Sleep-Wakefulness + Circadian Rhythms','—','—','—','—']
+      ]
+    },
+    guide:['¿Cuántas horas duerme? ¿Es suficiente para usted?','¿A qué hora se duerme y a qué hora se despierta?','¿Se despierta descansado? ¿El sueño es reparador?','¿Se despierta varias veces durante la noche?','¿Hay algún momento del día en que se siente peor (mañana vs noche)?','¿Ha reducido sus horas de sueño sin sentirse cansado?','¿Tiene pesadillas frecuentes?'],
+    specifiers:[
+      {id:'sueno_cant',type:'radio',label:'Cantidad',options:['[hipersomnia]','[insomnio-con-queja]','[reducida-sin-queja]','[fragmentado]'],showWhen:'!=0'},
+      {id:'sueno_timing',type:'radio',label:'Timing',options:['[adelantado]','[retrasado]','[irregular]'],showWhen:'!=0'},
+      {id:'sueno_calidad',type:'radio',label:'Calidad',options:['[no-reparador]','[pesadillas]'],showWhen:'!=0'},
+      {id:'sueno_diurno',type:'radio',label:'Variación diurna',options:['[matutino]','[vespertino]'],showWhen:'!=0'},
+      {id:'sueno_queja',type:'radio',label:'Queja',options:['[con-queja]','[sin-queja]'],showWhen:'!=0'}
     ]
   },
   {
@@ -1310,7 +1397,6 @@ function generateProfileText() {
     } else {
       const s = state[d.id]?.score;
       let line = `${d.id} = ${s !== null ? fmtScore(s) : '?'}`;
-      if (d.id === 'F5a.control' && state[d.id]?.specifiers?.oscila) line = `${d.id} = -2↔+2 [stimulus-dependent]`;
       const specs = formatSpecExport(d);
       if (specs) line += ` ${specs}`;
       lines.push(line);
