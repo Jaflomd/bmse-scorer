@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bMSE Scorer</title>
+<style>
+:root {
+  --sidebar-bg: #1a1e2e;
+  --sidebar-text: #a0a8c0;
+  --sidebar-active: #ffffff;
+  --sidebar-active-bg: #2a3050;
+  --sidebar-hover: #232840;
+  --content-bg: #ffffff;
+  --card-bg: #f8f9fb;
+  --border: #e2e5ed;
+  --text: #1a1e2e;
+  --text-muted: #6b7280;
+  --accent: #3b5bdb;
+  --accent-light: #e8edff;
+  --warning: #f59f00;
+  --warning-bg: #fff9db;
+  --warning-border: #ffd43b;
+  --danger: #e03131;
+  --danger-bg: #fff0f0;
+  --success: #2f9e44;
+  --neg2: #c92a2a;
+  --neg1: #e8590c;
+  --zero: #495057;
+  --pos1: #1971c2;
+  --pos2: #6741d9;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--content-bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+  overflow-y: auto;
+  transition: transform 0.3s;
+}
+.sidebar-header {
+  padding: 20px 16px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.sidebar-header p {
+  font-size: 11px;
+  color: var(--sidebar-text);
+  margin-top: 2px;
+}
+.progress-bar-container {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.progress-label {
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.progress-track {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s;
+  width: 0%;
+}
+.sidebar-nav {
+  flex: 1;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s;
+  gap: 8px;
+  user-select: none;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active);
+  font-weight: 600;
+}
+.nav-item .nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+.nav-item.scored .nav-dot { background: var(--success); }
+.nav-item.active .nav-dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(59,91,219,0.3); }
+.nav-item .nav-label { flex: 1; }
+.nav-item .nav-score {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sidebar-text);
+  min-width: 24px;
+  text-align: right;
+}
+.nav-item.scored .nav-score { color: var(--sidebar-active); }
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sidebar-footer .timer {
+  font-size: 11px;
+  color: var(--sidebar-text);
+  text-align: center;
+}
+.btn-sidebar {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-profile { background: var(--accent); color: #fff; }
+.btn-profile:hover { background: #2b4bc9; }
+.btn-reset { background: transparent; color: var(--danger); border: 1px solid rgba(225,49,49,0.3) !important; }
+.btn-reset:hover { background: rgba(225,49,49,0.1); }
+
+/* MOBILE */
+.mobile-header {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 52px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  align-items: center;
+  padding: 0 12px;
+  z-index: 101;
+  gap: 12px;
+}
+.hamburger {
+  background: none; border: none; color: #fff; font-size: 22px; cursor: pointer;
+  padding: 4px;
+}
+.mobile-header h1 { font-size: 16px; font-weight: 700; flex: 1; }
+.mobile-progress {
+  font-size: 11px; color: var(--sidebar-text);
+}
+.overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .overlay.open { display: block; }
+  .mobile-header { display: flex; }
+  .main { margin-left: 0 !important; padding-top: 64px !important; }
+}
+
+/* MAIN CONTENT */
+.main {
+  flex: 1;
+  margin-left: 260px;
+  padding: 32px;
+  max-width: 800px;
+}
+
+/* GATE WARNING */
+.gate-warning {
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #856404;
+  margin-bottom: 20px;
+  display: none;
+}
+
+/* DIMENSION CARD */
+.dimension-panel { display: none; }
+.dimension-panel.active { display: block; }
+.dim-header {
+  margin-bottom: 20px;
+}
+.dim-code {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.dim-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.dim-type {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* GUIDE */
+.guide-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.guide-box summary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+.guide-box .guide-content {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.guide-box .guide-content li {
+  margin-bottom: 4px;
+  margin-left: 16px;
+}
+
+/* SCORE BUTTONS */
+.score-group {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.score-btn {
+  flex: 1;
+  padding: 12px 4px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all 0.15s;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.score-btn:last-child { border-right: none; }
+.score-btn:hover { background: var(--card-bg); }
+.score-btn.selected { color: #fff; }
+.score-btn.selected[data-val="-2"] { background: var(--neg2); }
+.score-btn.selected[data-val="-1"] { background: var(--neg1); }
+.score-btn.selected[data-val="0"] { background: var(--zero); }
+.score-btn.selected[data-val="+1"], .score-btn.selected[data-val="1"] { background: var(--pos1); }
+.score-btn.selected[data-val="+2"], .score-btn.selected[data-val="2"] { background: var(--pos2); }
+.score-btn.selected[data-val="3"] { background: #862e9c; }
+.score-btn.selected[data-val="4"] { background: var(--danger); }
+
+/* SCORE DESCRIPTION */
+.score-desc {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  min-height: 44px;
+  display: none;
+}
+.score-desc.visible { display: block; }
+
+/* SPECIFIERS */
+.specifiers {
+  margin-top: 16px;
+}
+.specifiers h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.spec-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-row label {
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.spec-row input[type="checkbox"],
+.spec-row input[type="radio"] {
+  accent-color: var(--accent);
+}
+.spec-row select, .spec-row input[type="text"] {
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+}
+.spec-row input[type="text"] { width: 200px; }
+.spec-sub {
+  display: none;
+  margin-left: 28px;
+}
+.spec-sub.visible { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.spec-warning {
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* NAVIGATION BUTTONS */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.btn-nav {
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.btn-nav:hover { background: var(--card-bg); border-color: var(--accent); color: var(--accent); }
+.btn-nav.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-nav.primary:hover { background: #2b4bc9; }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* PROFILE PANEL */
+#profilePanel {
+  display: none;
+}
+#profilePanel.active { display: block; }
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.profile-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+}
+.profile-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.profile-table tr:hover { background: var(--card-bg); }
+.profile-table .score-cell {
+  font-weight: 700;
+  text-align: center;
+  min-width: 48px;
+}
+.profile-table .spec-cell {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.profile-actions .btn-nav { font-size: 13px; }
+
+/* BAR CHART */
+.bar-chart {
+  margin: 24px 0;
+}
+.bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+  font-size: 11px;
+}
+.bar-label {
+  width: 120px;
+  text-align: right;
+  padding-right: 8px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bar-track {
+  flex: 1;
+  height: 16px;
+  background: var(--card-bg);
+  border-radius: 2px;
+  position: relative;
+  border: 1px solid var(--border);
+}
+.bar-center {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.bar-fill {
+  position: absolute;
+  top: 2px; bottom: 2px;
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+.bar-val {
+  width: 32px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* TWO-AXIS */
+.two-axis-container {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.two-axis-container .axis-group {
+  flex: 1;
+  min-width: 200px;
+}
+.axis-group h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 200;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.3s;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- Mobile header -->
+<div class="mobile-header">
+  <button class="hamburger" onclick="toggleSidebar()">&#9776;</button>
+  <h1>bMSE</h1>
+  <span class="mobile-progress" id="mobileProgress">0/21</span>
+</div>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h1>bMSE Scorer</h1>
+    <p>Brief Mental State Examination</p>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-label">
+      <span>Progreso</span>
+      <span id="progressText">0 / 21</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav"></nav>
+  <div class="sidebar-footer">
+    <div class="timer" id="timerDisplay">00:00</div>
+    <button class="btn-sidebar btn-profile" onclick="showProfile()">Ver Perfil</button>
+    <button class="btn-sidebar btn-reset" onclick="resetEval()">Nueva Evaluaci&oacute;n</button>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="main" id="mainContent">
+  <div class="gate-warning" id="gateWarning"></div>
+  <div id="dimensionsContainer"></div>
+  <div id="profilePanel">
+    <div class="dim-header">
+      <div class="dim-code">Resumen</div>
+      <div class="dim-title">Perfil bMSE</div>
+    </div>
+    <div id="profileTimestamp" style="font-size:13px;color:var(--text-muted);margin-bottom:16px;"></div>
+    <div id="profileWarnings"></div>
+    <div class="bar-chart" id="barChart"></div>
+    <table class="profile-table">
+      <thead><tr><th>Dimensi&oacute;n</th><th>Puntaje</th><th>Especificadores</th></tr></thead>
+      <tbody id="profileBody"></tbody>
+    </table>
+    <div class="profile-actions">
+      <button class="btn-nav" onclick="copyProfile()">Copiar perfil</button>
+      <button class="btn-nav" onclick="exportProfile()">Exportar .txt</button>
+      <button class="btn-nav" onclick="showDimension(0)">Volver a evaluar</button>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DIMENSION DEFINITIONS ──
+const DIMS = [
+  {
+    id:'NC.conciencia', code:'NC', title:'Conciencia', type:'gate',
+    scores:{'-2':'Coma/estupor','-1':'Obnubilación','0':'Vigilia normal','+1':'Hiperalerta','+2':'Hipervigilancia con interferencia'},
+    guide:['&iquest;El paciente est&aacute; despierto espont&aacute;neamente?','&iquest;Mantiene vigilia sin est&iacute;mulo?','&iquest;Puede relajarse? &iquest;Puede dormir?','&iquest;Hay momentos m&aacute;s l&uacute;cidos y otros m&aacute;s confusos?','&iquest;Qu&eacute; d&iacute;a es hoy? &iquest;D&oacute;nde estamos? &iquest;C&oacute;mo se llama?'],
+    specifiers:[
+      {id:'F',type:'checkbox',label:'[F] Fluctúa'},
+      {id:'O:T',type:'checkbox',label:'[O:T] Tiempo'},
+      {id:'O:E',type:'checkbox',label:'[O:E] Espacio'},
+      {id:'O:P',type:'checkbox',label:'[O:P] Persona'}
+    ]
+  },
+  {
+    id:'F2.velocidad', code:'F2', title:'Velocidad psicomotora', type:'bipolar',
+    scores:{'-2':'Retardo severo','-1':'Enlentecimiento','0':'Proporcional','+1':'Aceleración','+2':'Agitación'},
+    guide:['Observe latencia de respuesta, velocidad del habla, cantidad de movimiento espont&aacute;neo.']
+  },
+  {
+    id:'NM.coordinación', code:'NM', title:'Perfil Neuromotor', type:'profile',
+    scores:{'0':'Normal','-1':'Torpeza/NSS aislados','-2':'Descoordinación/NSS múltiples'},
+    guide:['Observe movimientos involuntarios.','Evaluar coordinación con alternancia rápida, dedo-nariz, secuencia de Luria.'],
+    specifiers:[
+      {id:'tic',type:'checkbox',label:'[tic]',sub:{type:'text',placeholder:'Descripción'}},
+      {id:'estereotipia',type:'checkbox',label:'[estereotipia]',sub:{type:'select',options:['espontánea ⚠️','farmacológica','catatónica']}},
+      {id:'diskinesia',type:'checkbox',label:'[diskinesia]',sub:{type:'select',options:['tardía','espontánea ⚠️']}},
+      {id:'distonía',type:'checkbox',label:'[distonía]',sub:{type:'select',options:['aguda','tardía']}},
+      {id:'acatisia',type:'checkbox',label:'[acatisia]',sub:{type:'select',options:['subjetiva','objetiva','mixta']}},
+      {id:'parkinsonismo',type:'checkbox',label:'[parkinsonismo]',sub:{type:'select',options:['espontáneo ⚠️','farmacológico']}},
+      {id:'tremor',type:'checkbox',label:'[tremor]',sub:{type:'select',options:['reposo','postural','intencional']}}
+    ]
+  },
+  {
+    id:'F1.expresividad', code:'F1', title:'Expresividad comunicativa', type:'bipolar',
+    scores:{'-2':'Flat (amímica, aprosódica)','-1':'Restringida','0':'Proporcional','+1':'Expansiva','+2':'Lábil/exagerada'},
+    guide:['Observe expresión facial, prosodia, gestualidad, contacto visual, variabilidad emocional durante la entrevista.']
+  },
+  {
+    id:'F5a.control', code:'F5a', title:'Control atencional descendente', type:'bipolar',
+    scores:{'-2':'Sub-regulado (distractible severo)','-1':'Foco inestable','0':'Flexible','+1':'Foco sticky','+2':'Sobre-regulado (hiperfoco rígido)'},
+    guide:['&iquest;Le cuesta concentrarse en lo que tiene que hacer?','&iquest;Puede concentrarse bien en algo que le interesa mucho?','&iquest;Le pasa que se queda ‘pegado’ en algo?'],
+    specifiers:[{id:'oscila',type:'checkbox',label:'Oscila según estímulo (TDAH): -2↔2'}]
+  },
+  {
+    id:'F5b.captura', code:'F5b', title:'Captura atencional ascendente', type:'unipolar_pos',
+    scores:{'0':'Normal','+1':'Captura detectable','+2':'Captura severa'},
+    guide:['&iquest;Se distrae con ruidos?','&iquest;Le vienen pensamientos que no puede sacar?'],
+    specifiers:[
+      {id:'captura_type',type:'radio',label:'Tipo',options:['[E] Externa','[I:worry]','[I:rumia]','[I:obsesión]','[I:flashback]','[E+I]'],showWhen:'>=1'}
+    ]
+  },
+  {
+    id:'F3.tono', code:'F3', title:'Tono hedónico', type:'bipolar',
+    scores:{'-2':'Anhedonia profunda','-1':'Hipohedonia','0':'Proporcional','+1':'Hedonismo expansivo','+2':'Euforia sostenida'},
+    guide:['&iquest;Disfruta las cosas que antes disfrutaba?','&iquest;Se siente excesivamente bien?']
+  },
+  {
+    id:'F3.anticipación', code:'F3', title:'Anticipación hedónica', type:'bipolar',
+    scores:{'-2':'No anticipa placer','-1':'Anticipación reducida','0':'Proporcional','+1':'Anticipación excesiva','+2':'Wanting desacoplado'},
+    guide:['&iquest;Tiene ganas de hacer cosas?','&iquest;Espera con ilusión algo?']
+  },
+  {
+    id:'F3.drive', code:'F3', title:'Drive motivacional', type:'bipolar',
+    scores:{'-2':'Avolición','-1':'Iniciación reducida','0':'Proporcional','+1':'Drive elevado','+2':'Drive expansivo'},
+    guide:['&iquest;Tiene energía para hacer las cosas?','&iquest;Siente que tiene demasiados planes?']
+  },
+  {
+    id:'F4.experiencia', code:'F4', title:'Experiencia del pensamiento', type:'bipolar',
+    scores:{'-2':'Pensamiento vacío/bloqueado','-1':'Enlentecido','0':'Proporcional','+1':'Acelerado/presionado','+2':'Racing/fuga de ideas'},
+    guide:['&iquest;Cómo siente su pensamiento?','&iquest;Va rápido o lento?'],
+    specifiers:[
+      {id:'mind-wandering',type:'checkbox',label:'[mind-wandering]'},
+      {id:'racing',type:'checkbox',label:'[racing]'},
+      {id:'worry-loop',type:'checkbox',label:'[worry-loop]'},
+      {id:'interference',type:'checkbox',label:'[interference]'},
+      {id:'rumination',type:'checkbox',label:'[rumination]'}
+    ]
+  },
+  {
+    id:'F4.contenido', code:'F4', title:'Contenido del pensamiento', type:'conviction',
+    scores:{'0':'Sin contenido patológico','1':'Idea sobrevalorada leve','2':'Idea sobrevalorada','3':'Convicción alta','4':'Delirio'},
+    guide:['&iquest;Hay alguna idea que lo preocupe mucho?','&iquest;Qué tan seguro está de eso?'],
+    specifiers:[
+      {id:'contenido_type',type:'radio',label:'Tipo (nivel 4)',options:['[psicótico]','[no-psicótico]'],showWhen:'==4'}
+    ]
+  },
+  {
+    id:'F6.amenaza', code:'F6', title:'Sensibilidad a amenaza', type:'bipolar',
+    scores:{'-2':'Temerario (boldness)','-1':'Despreocupado','0':'Calibrado','+1':'Aprensivo','+2':'Hipervigilante/Pánico'},
+    guide:['&iquest;Hay algo que le preocupe o le dé miedo?','&iquest;Ha tenido ataques de pánico?','&iquest;Le dicen que es arriesgado?'],
+    specifiers:[
+      {id:'amenaza_type',type:'radio',label:'Tipo',options:['[T] Tónico','[F] Fásico'],showWhen:'!=0'}
+    ]
+  },
+  {
+    id:'F6.frustración', code:'F6', title:'Frustración', type:'bipolar',
+    scores:{'-2':'Explosivo','-1':'Umbral bajo','0':'Proporcional','+1':'Supresión parcial','+2':'Supresión rígida'},
+    guide:['&iquest;Se enoja fácilmente?','&iquest;Le cuesta expresar frustración?']
+  },
+  {
+    id:'F6.autoevaluación', code:'F6', title:'Autoevaluación', type:'bipolar',
+    scores:{'-2':'Worthlessness','-1':'Baja autoestima','0':'Proporcional','+1':'Autoestima inflada','+2':'Grandiosidad'},
+    guide:['&iquest;Cómo se ve a sí mismo?','&iquest;Se siente especial o superior?']
+  },
+  {
+    id:'F6.desesperanza', code:'F6', title:'Desesperanza', type:'bipolar',
+    scores:{'-2':'Futuro negro (negativo activo)','-1':'Futuro vacío','0':'Proporcional','+1':'Optimismo irreal','+2':'Invulnerabilidad'},
+    guide:['&iquest;Cómo ve el futuro?','&iquest;Piensa que las cosas van a mejorar?'],
+    specifiers:[
+      {id:'deseperanza_type',type:'radio',label:'Polo negativo',options:['[V] Vacío','[N] Negativo activo'],showWhen:'<0'}
+    ]
+  },
+  {
+    id:'F7.testing', code:'F7', title:'Testing de realidad', type:'bipolar',
+    scores:{'-2':'Realidad rechazada','-1':'Realidad cuestionada','0':'Proporcional','+1':'Hiperreal','+2':'Realidad impuesta'},
+    guide:['&iquest;Ha tenido experiencias que otros no comparten?','&iquest;Escucha o ve cosas?']
+  },
+  {
+    id:'F7.auto-mentalización', code:'F7', title:'Auto-mentalización', type:'bipolar',
+    scores:{'-2':'Sin acceso a estados internos','-1':'Acceso reducido','0':'Proporcional','+1':'Sobre-mentalización','+2':'Hiper-reflexivo'},
+    guide:['&iquest;Puede identificar qué siente?','&iquest;Le da muchas vueltas a por qué se siente así?']
+  },
+  {
+    id:'F7.mentalización-otro', code:'F7', title:'Mentalización del otro', type:'bipolar',
+    scores:{'-2':'No mentaliza al otro','-1':'Mentalización reducida','0':'Proporcional','+1':'Sobre-atribución','+2':'Hipermentalización paranoide'},
+    guide:['&iquest;Entiende lo que otros sienten?','&iquest;Siente que otros tienen intenciones ocultas?']
+  },
+  {
+    id:'G.arousal', code:'G', title:'Arousal', type:'bipolar',
+    scores:{'-2':'Disociación/shutdown','-1':'Hipoarousal','0':'Proporcional','+1':'Hiperarousal leve','+2':'Hiperarousal severo'},
+    guide:['Observe signos autonómicos: FC, sudoración, tensión muscular, estado de alerta.']
+  },
+  {
+    id:'G.coherencia', code:'G', title:'Coherencia global', type:'bipolar',
+    scores:{'-2':'Desorganización franca','-1':'Desorganización parcial','0':'Proporcional','+1':'Sobre-estructuración','+2':'Rigidez organizativa'},
+    guide:['Observe coherencia del discurso, conducta dirigida a metas, congruencia afecto-contenido.']
+  },
+  {
+    id:'P', code:'P', title:'Estado interpersonal', type:'two_axis',
+    axes:[
+      {id:'P1.dominancia',label:'P1 Dominancia',scores:{'-2':'Sumiso','0':'Equilibrado','+2':'Dominante'}},
+      {id:'P2.afiliación',label:'P2 Afiliación',scores:{'-2':'Hostil','0':'Equilibrado','+2':'Afiliativo'}}
+    ],
+    guide:['Observe la dinámica de la entrevista.','&iquest;Quién dirige? &iquest;Es cálido o frío?']
+  }
+];
+
+// ── STATE ──
+let state = loadState();
+let currentIdx = 0;
+let timerStart = state._timerStart || Date.now();
+let timerInterval;
+
+function defaultState() {
+  const s = {};
+  DIMS.forEach(d => {
+    if (d.type === 'two_axis') {
+      d.axes.forEach(a => { s[a.id] = {score: null}; });
+    } else {
+      s[d.id] = {score: null, specifiers: {}};
+    }
+  });
+  s._timerStart = Date.now();
+  return s;
+}
+function loadState() {
+  try {
+    const saved = localStorage.getItem('bmse_state');
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return defaultState();
+}
+function saveState() {
+  state._timerStart = timerStart;
+  localStorage.setItem('bmse_state', JSON.stringify(state));
+}
+
+// ── RENDER SIDEBAR ──
+function renderSidebar() {
+  const nav = document.getElementById('sidebarNav');
+  let html = '';
+  DIMS.forEach((d, i) => {
+    const scored = isDimScored(d, i);
+    const scoreStr = getDimScoreDisplay(d);
+    html += `<div class="nav-item ${scored ? 'scored' : ''} ${i === currentIdx ? 'active' : ''}" onclick="showDimension(${i})" data-idx="${i}">
+      <span class="nav-dot"></span>
+      <span class="nav-label">${d.code}. ${d.title}</span>
+      <span class="nav-score">${scoreStr}</span>
+    </div>`;
+  });
+  nav.innerHTML = html;
+  updateProgress();
+}
+
+function isDimScored(d, i) {
+  if (d.type === 'two_axis') {
+    return d.axes.every(a => state[a.id] && state[a.id].score !== null);
+  }
+  return state[d.id] && state[d.id].score !== null;
+}
+
+function getDimScoreDisplay(d) {
+  if (d.type === 'two_axis') {
+    const s1 = state[d.axes[0].id]?.score;
+    const s2 = state[d.axes[1].id]?.score;
+    if (s1 === null && s2 === null) return '';
+    return `${s1 !== null ? fmtScore(s1) : '?'}|${s2 !== null ? fmtScore(s2) : '?'}`;
+  }
+  const s = state[d.id]?.score;
+  if (s === null || s === undefined) return '';
+  return fmtScore(s);
+}
+
+function fmtScore(v) {
+  v = parseInt(v);
+  return v > 0 ? '+' + v : '' + v;
+}
+
+function updateProgress() {
+  let scored = 0;
+  const total = DIMS.length;
+  DIMS.forEach((d, i) => { if (isDimScored(d, i)) scored++; });
+  document.getElementById('progressText').textContent = `${scored} / ${total}`;
+  document.getElementById('progressFill').style.width = `${(scored/total)*100}%`;
+  document.getElementById('mobileProgress').textContent = `${scored}/${total}`;
+}
+
+// ── RENDER DIMENSION ──
+function showDimension(idx) {
+  currentIdx = idx;
+  document.getElementById('profilePanel').classList.remove('active');
+  const container = document.getElementById('dimensionsContainer');
+  const d = DIMS[idx];
+
+  let html = `<div class="dimension-panel active">`;
+  html += `<div class="dim-header">
+    <div class="dim-code">${d.code} &mdash; Dimensión ${idx+1} de ${DIMS.length}</div>
+    <div class="dim-title">${d.title}</div>
+    <div class="dim-type">${typeLabel(d.type)}</div>
+  </div>`;
+
+  // Guide
+  if (d.guide) {
+    html += `<details class="guide-box" open><summary>Guía clínica</summary><div class="guide-content"><ul>`;
+    d.guide.forEach(g => html += `<li>${g}</li>`);
+    html += `</ul></div></details>`;
+  }
+
+  // Score buttons
+  if (d.type === 'two_axis') {
+    html += renderTwoAxis(d);
+  } else {
+    html += renderScoreButtons(d);
+    html += `<div class="score-desc" id="scoreDesc"></div>`;
+    if (d.specifiers) html += renderSpecifiers(d);
+  }
+
+  // Nav buttons
+  html += `<div class="nav-buttons">`;
+  html += `<button class="btn-nav" ${idx===0?'disabled':''} onclick="showDimension(${idx-1})">&larr; Anterior</button>`;
+  if (idx < DIMS.length - 1) {
+    html += `<button class="btn-nav primary" onclick="showDimension(${idx+1})">Siguiente &rarr;</button>`;
+  } else {
+    html += `<button class="btn-nav primary" onclick="showProfile()">Ver Perfil</button>`;
+  }
+  html += `</div></div>`;
+
+  container.innerHTML = html;
+  updateScoreDesc(d);
+  updateSpecVisibility(d);
+  updateGateWarning();
+  renderSidebar();
+  closeSidebarMobile();
+  window.scrollTo(0, 0);
+}
+
+function typeLabel(t) {
+  const m = {bipolar:'Bipolar -2/+2', gate:'Gate (bipolar + especificadores)', profile:'Perfil unidireccional', unipolar_pos:'Unidireccional 0/+2', conviction:'Escala de convicción 0-4', two_axis:'Dos ejes'};
+  return m[t] || t;
+}
+
+function renderScoreButtons(d) {
+  const keys = Object.keys(d.scores);
+  const cur = state[d.id]?.score;
+  let html = `<div class="score-group">`;
+  keys.forEach(k => {
+    const sel = cur !== null && String(cur) === String(k) ? 'selected' : '';
+    html += `<button class="score-btn ${sel}" data-val="${k}" onclick="setScore('${d.id}','${k}',this)">${k}</button>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderTwoAxis(d) {
+  let html = `<div class="two-axis-container">`;
+  d.axes.forEach(ax => {
+    const keys = Object.keys(ax.scores);
+    const allKeys = ['-2','-1','0','+1','+2'];
+    const cur = state[ax.id]?.score;
+    html += `<div class="axis-group"><h4>${ax.label}</h4><div class="score-group">`;
+    allKeys.forEach(k => {
+      const sel = cur !== null && String(cur) === String(k) ? 'selected' : '';
+      const label = ax.scores[k] ? `<span style="font-size:10px;display:block">${ax.scores[k]}</span>` : '';
+      html += `<button class="score-btn ${sel}" data-val="${k}" onclick="setAxisScore('${ax.id}','${k}',this)">${k}${label}</button>`;
+    });
+    html += `</div></div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderSpecifiers(d) {
+  let html = `<div class="specifiers"><h4>Especificadores</h4>`;
+  d.specifiers.forEach(sp => {
+    const checked = state[d.id]?.specifiers?.[sp.id];
+    if (sp.type === 'checkbox') {
+      const isChecked = checked ? 'checked' : '';
+      html += `<div class="spec-row"><label><input type="checkbox" ${isChecked} onchange="setSpec('${d.id}','${sp.id}',this.checked)"> ${sp.label}</label>`;
+      if (sp.sub) {
+        const subVal = state[d.id]?.specifiers?.[sp.id + '_sub'] || '';
+        html += `<div class="spec-sub ${checked ? 'visible' : ''}" id="sub_${sp.id}">`;
+        if (sp.sub.type === 'text') {
+          html += `<input type="text" value="${subVal}" placeholder="${sp.sub.placeholder || ''}" onchange="setSpec('${d.id}','${sp.id}_sub',this.value)">`;
+        } else if (sp.sub.type === 'select') {
+          html += `<select onchange="setSpec('${d.id}','${sp.id}_sub',this.value)"><option value="">--</option>`;
+          sp.sub.options.forEach(o => {
+            html += `<option value="${o}" ${subVal===o?'selected':''}>${o}</option>`;
+          });
+          html += `</select>`;
+          if (sp.sub.options.some(o => o.includes('⚠️')) && subVal && subVal.includes('⚠️')) {
+            html += `<span class="spec-warning">⚠️</span>`;
+          }
+        }
+        html += `</div>`;
+      }
+      html += `</div>`;
+    } else if (sp.type === 'radio') {
+      html += `<div class="spec-row" id="specrow_${sp.id}" style="display:none"><span style="font-size:13px;font-weight:600;margin-right:8px;">${sp.label}:</span>`;
+      sp.options.forEach(o => {
+        const isChecked = checked === o ? 'checked' : '';
+        html += `<label><input type="radio" name="spec_${sp.id}" value="${o}" ${isChecked} onchange="setSpec('${d.id}','${sp.id}',this.value)"> ${o}</label>`;
+      });
+      html += `</div>`;
+    }
+  });
+  html += `</div>`;
+  return html;
+}
+
+// ── SCORE ACTIONS ──
+function setScore(dimId, val, btn) {
+  if (!state[dimId]) state[dimId] = {score:null, specifiers:{}};
+  state[dimId].score = val;
+  // Update buttons
+  btn.parentElement.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  saveState();
+  const d = DIMS.find(x => x.id === dimId);
+  updateScoreDesc(d);
+  updateSpecVisibility(d);
+  updateGateWarning();
+  renderSidebar();
+}
+
+function setAxisScore(axId, val, btn) {
+  if (!state[axId]) state[axId] = {score:null};
+  state[axId].score = val;
+  btn.parentElement.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  saveState();
+  renderSidebar();
+}
+
+function setSpec(dimId, specId, val) {
+  if (!state[dimId]) state[dimId] = {score:null, specifiers:{}};
+  if (!state[dimId].specifiers) state[dimId].specifiers = {};
+  state[dimId].specifiers[specId] = val;
+  saveState();
+  const d = DIMS.find(x => x.id === dimId);
+  // Toggle sub-specifier visibility
+  const subEl = document.getElementById('sub_' + specId);
+  if (subEl) {
+    subEl.classList.toggle('visible', !!val);
+  }
+}
+
+function updateScoreDesc(d) {
+  if (!d || d.type === 'two_axis') return;
+  const el = document.getElementById('scoreDesc');
+  if (!el) return;
+  const score = state[d.id]?.score;
+  if (score !== null && score !== undefined && d.scores[score]) {
+    el.textContent = d.scores[score];
+    el.classList.add('visible');
+  } else {
+    el.classList.remove('visible');
+  }
+}
+
+function updateSpecVisibility(d) {
+  if (!d || !d.specifiers) return;
+  const score = state[d.id]?.score;
+  const numScore = score !== null ? parseInt(score) : null;
+  d.specifiers.forEach(sp => {
+    if (sp.showWhen) {
+      const row = document.getElementById('specrow_' + sp.id);
+      if (!row) return;
+      let show = false;
+      if (sp.showWhen === '>=1') show = numScore !== null && numScore >= 1;
+      else if (sp.showWhen === '!=0') show = numScore !== null && numScore !== 0;
+      else if (sp.showWhen === '<0') show = numScore !== null && numScore < 0;
+      else if (sp.showWhen === '==4') show = numScore !== null && numScore === 4;
+      row.style.display = show ? 'flex' : 'none';
+    }
+  });
+}
+
+function updateGateWarning() {
+  const el = document.getElementById('gateWarning');
+  const ncScore = state['NC.conciencia']?.score;
+  if (ncScore !== null && ncScore !== undefined && String(ncScore) !== '0') {
+    el.textContent = `⚠️ Evaluar bajo conciencia alterada (NC = ${ncScore})`;
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+// ── PROFILE ──
+function showProfile() {
+  document.getElementById('dimensionsContainer').innerHTML = '';
+  DIMS.forEach((_, i) => {
+    const panels = document.querySelectorAll('.dimension-panel');
+    panels.forEach(p => p.classList.remove('active'));
+  });
+  const panel = document.getElementById('profilePanel');
+  panel.classList.add('active');
+
+  const now = new Date();
+  document.getElementById('profileTimestamp').textContent = `Evaluación: ${now.toLocaleDateString('es-PE')} ${now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'})}`;
+
+  // Warnings
+  let warnings = '';
+  const ncScore = state['NC.conciencia']?.score;
+  if (ncScore !== null && String(ncScore) !== '0') {
+    warnings += `<div class="gate-warning" style="display:block">⚠️ Conciencia alterada (NC = ${ncScore})</div>`;
+  }
+  // NM warnings
+  const nmSpecs = state['NM.coordinación']?.specifiers || {};
+  Object.keys(nmSpecs).forEach(k => {
+    if (k.endsWith('_sub') && nmSpecs[k] && nmSpecs[k].includes('⚠️')) {
+      const parent = k.replace('_sub','');
+      warnings += `<div class="gate-warning" style="display:block;background:var(--danger-bg);border-color:var(--danger);">⚠️ NM: ${parent} ${nmSpecs[k]}</div>`;
+    }
+  });
+  document.getElementById('profileWarnings').innerHTML = warnings;
+
+  // Table
+  let tbody = '';
+  DIMS.forEach(d => {
+    if (d.type === 'two_axis') {
+      d.axes.forEach(ax => {
+        const s = state[ax.id]?.score;
+        const sColor = s !== null ? scoreColor(parseInt(s)) : '';
+        tbody += `<tr><td>${ax.id}</td><td class="score-cell" style="color:${sColor}">${s !== null ? fmtScore(s) : '-'}</td><td class="spec-cell"></td></tr>`;
+      });
+    } else {
+      const s = state[d.id]?.score;
+      const sColor = s !== null ? scoreColor(parseInt(s)) : '';
+      const specs = formatSpecifiers(d);
+      tbody += `<tr><td>${d.id}</td><td class="score-cell" style="color:${sColor}">${s !== null ? fmtScore(s) : '-'}</td><td class="spec-cell">${specs}</td></tr>`;
+    }
+  });
+  document.getElementById('profileBody').innerHTML = tbody;
+
+  // Bar chart
+  renderBarChart();
+  renderSidebar();
+  closeSidebarMobile();
+  window.scrollTo(0, 0);
+}
+
+function scoreColor(v) {
+  if (v <= -2) return 'var(--neg2)';
+  if (v === -1) return 'var(--neg1)';
+  if (v === 0) return 'var(--zero)';
+  if (v === 1) return 'var(--pos1)';
+  return 'var(--pos2)';
+}
+
+function formatSpecifiers(d) {
+  const specs = state[d.id]?.specifiers || {};
+  const parts = [];
+  if (d.specifiers) {
+    d.specifiers.forEach(sp => {
+      const v = specs[sp.id];
+      if (!v) return;
+      if (sp.type === 'checkbox' && v === true) {
+        const sub = specs[sp.id + '_sub'];
+        parts.push(sub ? `${sp.label.replace(/[\[\]]/g,'')}: ${sub}` : sp.label);
+      } else if (sp.type === 'radio' && v) {
+        parts.push(v);
+      }
+    });
+  }
+  return parts.join(', ');
+}
+
+function renderBarChart() {
+  const chart = document.getElementById('barChart');
+  let html = '';
+  DIMS.forEach(d => {
+    if (d.type === 'two_axis') {
+      d.axes.forEach(ax => {
+        const s = state[ax.id]?.score;
+        html += barRow(ax.id.split('.').pop(), s !== null ? parseInt(s) : null, true);
+      });
+    } else if (d.type === 'conviction') {
+      const s = state[d.id]?.score;
+      html += barRow(d.id.split('.').pop() || d.id, s !== null ? parseInt(s) : null, false, 4);
+    } else if (d.type === 'profile') {
+      const s = state[d.id]?.score;
+      html += barRow(d.code, s !== null ? parseInt(s) : null, false, -2, true);
+    } else {
+      const s = state[d.id]?.score;
+      html += barRow(d.id.split('.').pop() || d.id, s !== null ? parseInt(s) : null, true);
+    }
+  });
+  chart.innerHTML = html;
+}
+
+function barRow(label, val, bipolar, max, negOnly) {
+  max = max || 2;
+  let fillStyle = '';
+  if (val !== null) {
+    if (bipolar) {
+      const pct = (val / 2) * 50;
+      if (val >= 0) {
+        fillStyle = `left:50%;width:${Math.abs(pct)}%;background:${val>0?'var(--pos1)':'var(--zero)'}`;
+      } else {
+        fillStyle = `right:50%;width:${Math.abs(pct)}%;background:var(--neg1)`;
+      }
+    } else if (negOnly) {
+      const pct = (Math.abs(val) / 2) * 100;
+      fillStyle = `right:0;width:${pct}%;background:var(--neg1)`;
+    } else {
+      const pct = (val / max) * 100;
+      fillStyle = `left:0;width:${pct}%;background:var(--pos1)`;
+    }
+  }
+  return `<div class="bar-row">
+    <span class="bar-label">${label}</span>
+    <div class="bar-track">${bipolar ? '<div class="bar-center"></div>' : ''}<div class="bar-fill" style="${fillStyle}"></div></div>
+    <span class="bar-val">${val !== null ? (val > 0 && bipolar ? '+'+val : val) : '-'}</span>
+  </div>`;
+}
+
+// ── EXPORT ──
+function generateProfileText() {
+  const now = new Date();
+  const fecha = now.toLocaleDateString('es-PE');
+  const hora = now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'});
+  let lines = [`bMSE Profile — ${fecha} ${hora}`, ''];
+
+  // Gate
+  const ncS = state['NC.conciencia']?.score;
+  let ncLine = `GATE: NC.conciencia = ${ncS !== null ? ncS : '?'}`;
+  const ncSpecs = formatSpecExport(DIMS[0]);
+  if (ncSpecs) ncLine += ` ${ncSpecs}`;
+  lines.push(ncLine);
+  lines.push('---');
+
+  DIMS.slice(1).forEach(d => {
+    if (d.type === 'two_axis') {
+      const s1 = state[d.axes[0].id]?.score;
+      const s2 = state[d.axes[1].id]?.score;
+      lines.push(`${d.axes[0].id} = ${s1 !== null ? fmtScore(s1) : '?'} | ${d.axes[1].id} = ${s2 !== null ? fmtScore(s2) : '?'}`);
+    } else {
+      const s = state[d.id]?.score;
+      let line = `${d.id} = ${s !== null ? fmtScore(s) : '?'}`;
+      // Special: F5a oscila
+      if (d.id === 'F5a.control' && state[d.id]?.specifiers?.oscila) {
+        line = `${d.id} = -2↔2 [stimulus-dependent]`;
+      }
+      const specs = formatSpecExport(d);
+      if (specs) line += ` ${specs}`;
+      lines.push(line);
+    }
+  });
+
+  return lines.join('\n');
+}
+
+function formatSpecExport(d) {
+  const specs = state[d.id]?.specifiers || {};
+  const parts = [];
+  if (d.specifiers) {
+    d.specifiers.forEach(sp => {
+      if (sp.id === 'oscila') return; // handled specially
+      const v = specs[sp.id];
+      if (!v) return;
+      if (sp.type === 'checkbox' && v === true) {
+        const sub = specs[sp.id + '_sub'];
+        parts.push(sub ? `${sp.label.replace(/[\[\]]/g,'').trim()}: ${sub}` : sp.label.trim());
+      } else if (sp.type === 'radio' && v) {
+        parts.push(v);
+      }
+    });
+  }
+  return parts.length ? `[${parts.join(', ')}]` : '';
+}
+
+function copyProfile() {
+  const text = generateProfileText();
+  navigator.clipboard.writeText(text).then(() => showToast('Perfil copiado al portapapeles'));
+}
+
+function exportProfile() {
+  const text = generateProfileText();
+  const blob = new Blob([text], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const now = new Date();
+  a.download = `bMSE_${now.toISOString().slice(0,10)}_${now.toTimeString().slice(0,5).replace(':','')}.txt`;
+  a.click();
+  showToast('Archivo exportado');
+}
+
+function resetEval() {
+  if (!confirm('¿Iniciar nueva evaluación? Se borrarán los datos actuales.')) return;
+  state = defaultState();
+  timerStart = Date.now();
+  saveState();
+  showDimension(0);
+}
+
+// ── TIMER ──
+function startTimer() {
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - timerStart) / 1000);
+    const m = Math.floor(elapsed / 60);
+    const s = elapsed % 60;
+    document.getElementById('timerDisplay').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+}
+
+// ── MOBILE ──
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeSidebarMobile() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ── INIT ──
+showDimension(0);
+startTimer();
+</script>
+</body>
+</html>
