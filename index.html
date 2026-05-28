@@ -219,7 +219,7 @@ body {
 <div class="mobile-header">
   <button class="hamburger" onclick="toggleSidebar()">&#9776;</button>
   <h1>bMSE</h1>
-  <span class="mobile-progress" id="mobileProgress">0/23</span>
+  <span class="mobile-progress" id="mobileProgress">0/24</span>
 </div>
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
@@ -231,7 +231,7 @@ body {
   <div class="progress-bar-container">
     <div class="progress-label">
       <span>Progreso</span>
-      <span id="progressText">0 / 23</span>
+      <span id="progressText">0 / 24</span>
     </div>
     <div class="progress-track">
       <div class="progress-fill" id="progressFill"></div>
@@ -476,6 +476,41 @@ const DIMS = [
       {id:'acatisia',type:'checkbox',label:'[acatisia]',sub:{type:'select',options:['subjetiva','objetiva','mixta']}},
       {id:'parkinsonismo',type:'checkbox',label:'[parkinsonismo]',sub:{type:'select',options:['espontáneo ⚠️','farmacológico']}},
       {id:'tremor',type:'checkbox',label:'[tremor]',sub:{type:'select',options:['reposo','postural','intencional']}}
+    ]
+  },
+  {
+    id:'F5.regulación', code:'F5', title:'Regulación atencional', type:'bipolar',
+    scores:{'-2':'Bottom-up domina','-1':'Foco inestable','0':'Balance flexible','+1':'Foco sticky','+2':'Top-down domina'},
+    details:{
+      '-2':{nivel:'Bottom-up domina (DAN colapsado, VAN sin freno)',loQueVes:'No completa una frase sin saltar. Responde a todo estímulo. Narrativa fragmentada. Entrevista caótica.',loQueDice:'"No puedo concentrarme en nada." "¿Qué me preguntaba?"',contra:'Frustración: no logra mantener estructura. Impulso de simplificar preguntas.',wm:'Gate abierto: todo entra, nada se mantiene.',clasica:'AMDP: 10 (concentración alterada grave). Fish: Aprosexia. Vallejo: Aprosexia. Eguíluz: Aprosexia. DSM-5: TDAH inatención, Delirium. ICD-11: MB21.5 (distractibilidad).'},
+      '-1':{nivel:'Foco inestable (DAN débil, se distrae pero recupera)',loQueVes:'Se distrae pero recupera. Pierde detalles. Necesita repetición. Latencia variable.',loQueDice:'"A veces pierdo el hilo." "Me cuesta un poco."',contra:'Leve impaciencia. Necesidad de repetir.',wm:'Gate lábil: mantiene con esfuerzo compensatorio.',clasica:'AMDP: 9 (apercepción alterada), 10 (leve). Fish: Hipoprosexia. Vallejo: Hipoprosexia. Eguíluz: Hipoprosexia.'},
+      '0':{nivel:'Balance flexible (DAN ↔ VAN proporcionado)',loQueVes:'Sigue conversación. Cambia de tema cuando corresponde. Atento sin esfuerzo visible.',loQueDice:'"Estoy atento." Sin reporte de dificultad.',contra:'Cómoda, fluida.',wm:'Gate flexible: actualiza proporcionalmente.',clasica:''},
+      '+1':{nivel:'Foco sticky (DAN parcialmente rígido, cuesta redirigir)',loQueVes:'Monólogos. Vuelve al mismo punto. Cuesta redirigir. "Déjeme terminar" repetidamente.',loQueDice:'"Necesito explicar esto bien." "No puedo pasar a otra cosa."',contra:'Impaciencia: "no puedo sacarlo de ahí." Sensación de estar atrapado en el tema del paciente.',wm:'Gate parcialmente cerrado: filtra demasiado, cuesta actualizar.',clasica:'AMDP: 18 (pensamiento restringido). Fish: Hiperprosexia. Vallejo: Hiperprosexia. Eguíluz: Hiperprosexia.'},
+      '+2':{nivel:'Top-down domina (DAN rígido, VAN suprimida)',loQueVes:'No responde a redirección. Persevera en un tema. Hiperfoco rígido visible. Ignora preguntas que cambien de tema.',loQueDice:'"No puedo sacarme esto de la cabeza." "Solo puedo pensar en una cosa." O no reporta — no se da cuenta.',contra:'Exasperación o resignación. Deja de intentar redirigir.',wm:'Gate cerrado: no actualiza, no deja entrar información nueva.',clasica:'AMDP: 18 (grave), 19 (perseveración). Fish: Perseveración. Vallejo: Paraprosexia. Eguíluz: Paraprosexia. DSM-5: TOC, TEA restricted. ICD-11: MB21.9 (perseveración).'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','10 grave','9, 10 leve','—','18','18 grave, 19'],
+        ['Fish (2019)','Aprosexia','Hipoprosexia','—','Hiperprosexia','Perseveración'],
+        ['Vallejo (2025)','Aprosexia','Hipoprosexia','—','Hiperprosexia','Paraprosexia'],
+        ['Eguíluz (2005)','Aprosexia','Hipoprosexia','—','Hiperprosexia','Paraprosexia'],
+        ['DSM-5','TDAH inatención, Delirium','—','—','—','TOC, TEA restricted'],
+        ['ICD-11','MB21.5 distractibilidad','—','—','—','MB21.9 perseveración']
+      ]
+    },
+    guide:['¿Le cuesta concentrarse en las cosas que tiene que hacer?','¿Puede concentrarse bien en algo que le interesa mucho? (pregunta clave TDAH)','¿Le pasa que se queda \'pegado\' en algo y le cuesta cambiar?','¿Qué lo distrae más: cosas de afuera o pensamientos de adentro?','Digit span backward: "Repita al revés: 7-2-9"'],
+    specifiers:[
+      {id:'f5_oscila',type:'checkbox',label:'[oscila] Oscila según estímulo (TDAH)',showWhen:'always_f5'},
+      {id:'f5_cap_E',type:'checkbox',label:'[E] Externa',showWhen:'f5_neg'},
+      {id:'f5_cap_Iworry',type:'checkbox',label:'[I:worry]',showWhen:'f5_neg'},
+      {id:'f5_cap_Irumia',type:'checkbox',label:'[I:rumia]',showWhen:'f5_neg'},
+      {id:'f5_cap_Iobsesion',type:'checkbox',label:'[I:obsesión]',showWhen:'f5_neg'},
+      {id:'f5_cap_Iflashback',type:'checkbox',label:'[I:flashback]',showWhen:'f5_neg'},
+      {id:'f5_cap_Iaberrant',type:'checkbox',label:'[I:aberrant]',showWhen:'f5_neg'},
+      {id:'f5_rig_prior',type:'checkbox',label:'[prior]',showWhen:'f5_pos'},
+      {id:'f5_rig_loop',type:'checkbox',label:'[loop]',showWhen:'f5_pos'},
+      {id:'f5_rig_reward',type:'checkbox',label:'[reward]',showWhen:'f5_pos'}
     ]
   },
   {
@@ -1167,6 +1202,11 @@ function setSpec(dimId, specId, val) {
   saveState();
   const subEl = document.getElementById('sub_' + specId);
   if (subEl) subEl.classList.toggle('visible', !!val);
+  // F5 oscila toggle: re-evaluate specifier visibility
+  if (specId === 'f5_oscila') {
+    const d = DIMS.find(x => x.id === dimId);
+    if (d) updateSpecVisibility(d);
+  }
 }
 
 function updateScoreDetail(d) {
@@ -1180,6 +1220,7 @@ function updateScoreDetail(d) {
     let html = `<h4>${det.nivel}</h4>`;
     if (det.loQueVes) html += `<div class="detail-row"><div class="detail-label">Lo que ves</div><div class="detail-val">${det.loQueVes}</div></div>`;
     if (det.loQueDice) html += `<div class="detail-row"><div class="detail-label">Lo que dice</div><div class="detail-val">${det.loQueDice}</div></div>`;
+    if (det.wm) html += `<div class="detail-row"><div class="detail-label">Working Memory</div><div class="detail-val">${det.wm}</div></div>`;
     if (det.clasica) html += `<div class="detail-row"><div class="detail-label">Psicopatología clásica</div><div class="detail-val">${det.clasica}</div></div>`;
     if (det.contra) html += `<div class="ct-row"><div class="ct-label">Contratransferencia</div>${det.contra}</div>`;
     el.innerHTML = html;
@@ -1214,12 +1255,19 @@ function updateSpecVisibility(d) {
   const dimId = d.type === 'two_axis' ? d.id : d.id;
   const score = state[dimId]?.score;
   const numScore = score !== null ? parseInt(score) : null;
+  const oscila = d.id === 'F5.regulación' && state[dimId]?.specifiers?.f5_oscila;
   d.specifiers.forEach(sp => {
     if (sp.showWhen && sp.showWhen !== 'always') {
       const row = document.getElementById('specrow_' + sp.id);
       if (!row) return;
       let show = false;
-      if (sp.showWhen === '>=1') show = numScore !== null && numScore >= 1;
+      if (sp.showWhen === 'always_f5') {
+        show = true;
+      } else if (sp.showWhen === 'f5_neg') {
+        show = (numScore !== null && numScore < 0) || oscila;
+      } else if (sp.showWhen === 'f5_pos') {
+        show = (numScore !== null && numScore > 0) || oscila;
+      } else if (sp.showWhen === '>=1') show = numScore !== null && numScore >= 1;
       else if (sp.showWhen === '!=0') show = numScore !== null && numScore !== 0;
       else if (sp.showWhen === '<0') show = numScore !== null && numScore < 0;
       else if (sp.showWhen === '>0') show = numScore !== null && numScore > 0;
@@ -1290,7 +1338,11 @@ function showProfile() {
       const sColor = s !== null ? scoreColor(parseInt(s)) : '';
       const specs = formatSpecifiers(d);
       const scoreLabel = s !== null && d.scores[s] ? d.scores[s] : '';
-      tbody += `<tr><td>${d.id}</td><td class="score-cell" style="color:${sColor}">${s !== null ? fmtScore(s) : '-'}</td><td class="spec-cell">${specs}${scoreLabel && specs ? ' — ' : ''}${scoreLabel ? '<i style="color:var(--text-muted)">'+scoreLabel+'</i>' : ''}</td></tr>`;
+      let scoreDisplay = s !== null ? fmtScore(s) : '-';
+      if (d.id === 'F5.regulación' && state[d.id]?.specifiers?.f5_oscila) {
+        scoreDisplay = '-2↔+2';
+      }
+      tbody += `<tr><td>${d.id}</td><td class="score-cell" style="color:${sColor}">${scoreDisplay}</td><td class="spec-cell">${specs}${scoreLabel && specs ? ' — ' : ''}${scoreLabel ? '<i style="color:var(--text-muted)">'+scoreLabel+'</i>' : ''}</td></tr>`;
     }
   });
   document.getElementById('profileBody').innerHTML = tbody;
@@ -1314,7 +1366,7 @@ function formatSpecifiers(d) {
   const parts = [];
   if (d.specifiers) {
     d.specifiers.forEach(sp => {
-      if (sp.id === 'oscila') { if (specs[sp.id]) parts.push('−2↔+2 [SD]'); return; }
+      if (sp.id === 'f5_oscila') { if (specs[sp.id]) parts.push('[oscila]'); return; }
       const v = specs[sp.id];
       if (!v) return;
       if (sp.type === 'checkbox' && v === true) {
@@ -1396,7 +1448,11 @@ function generateProfileText() {
       lines.push(line);
     } else {
       const s = state[d.id]?.score;
-      let line = `${d.id} = ${s !== null ? fmtScore(s) : '?'}`;
+      let scoreDisplay = s !== null ? fmtScore(s) : '?';
+      if (d.id === 'F5.regulación' && state[d.id]?.specifiers?.f5_oscila) {
+        scoreDisplay = '-2↔+2';
+      }
+      let line = `${d.id} = ${scoreDisplay}`;
       const specs = formatSpecExport(d);
       if (specs) line += ` ${specs}`;
       lines.push(line);
@@ -1411,10 +1467,15 @@ function formatSpecExport(d) {
   const parts = [];
   if (d.specifiers) {
     d.specifiers.forEach(sp => {
-      if (sp.id === 'oscila') return;
+      if (sp.id === 'f5_oscila') { if (specs[sp.id]) parts.push('[oscila]'); return; }
       const v = specs[sp.id];
       if (!v) return;
       if (sp.type === 'checkbox' && v === true) {
+        // F5 specifiers: export as bracketed tags
+        if (d.id === 'F5.regulación') {
+          const match = sp.label.match(/\[([^\]]+)\]/);
+          if (match) { parts.push(`[${match[1]}]`); return; }
+        }
         const sub = specs[sp.id + '_sub'];
         parts.push(sub ? `${sp.label.replace(/[\[\]]/g,'').trim()}: ${sub}` : sp.label.trim());
       } else if (sp.type === 'radio' && v) {
@@ -1422,6 +1483,7 @@ function formatSpecExport(d) {
       }
     });
   }
+  if (d.id === 'F5.regulación') return parts.join(' ');
   return parts.length ? `[${parts.join(', ')}]` : '';
 }
 
