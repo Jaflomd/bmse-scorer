@@ -32,9 +32,7 @@
   --radius: 8px;
   --shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--content-bg);
@@ -44,8 +42,6 @@ body {
   font-size: 15px;
   line-height: 1.5;
 }
-
-/* SIDEBAR */
 .sidebar {
   width: 260px;
   background: var(--sidebar-bg);
@@ -62,133 +58,46 @@ body {
   padding: 20px 16px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.sidebar-header h1 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.5px;
-}
-.sidebar-header p {
-  font-size: 11px;
-  color: var(--sidebar-text);
-  margin-top: 2px;
-}
+.sidebar-header h1 { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 11px; color: var(--sidebar-text); margin-top: 2px; }
 .progress-bar-container {
   padding: 12px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.progress-label {
-  font-size: 11px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-.progress-track {
-  height: 4px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  transition: width 0.3s;
-  width: 0%;
-}
-.sidebar-nav {
-  flex: 1;
-  padding: 8px 0;
-  overflow-y: auto;
-}
+.progress-label { font-size: 11px; display: flex; justify-content: space-between; margin-bottom: 4px; }
+.progress-track { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s; width: 0%; }
+.sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
 .nav-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: background 0.15s;
-  gap: 8px;
-  user-select: none;
+  display: flex; align-items: center; padding: 8px 16px; cursor: pointer;
+  font-size: 13px; transition: background 0.15s; gap: 8px; user-select: none;
 }
 .nav-item:hover { background: var(--sidebar-hover); }
-.nav-item.active {
-  background: var(--sidebar-active-bg);
-  color: var(--sidebar-active);
-  font-weight: 600;
-}
-.nav-item .nav-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  flex-shrink: 0;
-}
+.nav-item.active { background: var(--sidebar-active-bg); color: var(--sidebar-active); font-weight: 600; }
+.nav-item .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); flex-shrink: 0; }
 .nav-item.scored .nav-dot { background: var(--success); }
 .nav-item.active .nav-dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(59,91,219,0.3); }
 .nav-item .nav-label { flex: 1; }
-.nav-item .nav-score {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--sidebar-text);
-  min-width: 24px;
-  text-align: right;
-}
+.nav-item .nav-score { font-size: 11px; font-weight: 600; color: var(--sidebar-text); min-width: 24px; text-align: right; }
 .nav-item.scored .nav-score { color: var(--sidebar-active); }
 .sidebar-footer {
-  padding: 12px 16px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column; gap: 6px;
 }
-.sidebar-footer .timer {
-  font-size: 11px;
-  color: var(--sidebar-text);
-  text-align: center;
-}
-.btn-sidebar {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-}
+.sidebar-footer .timer { font-size: 11px; color: var(--sidebar-text); text-align: center; }
+.btn-sidebar { display: block; width: 100%; padding: 8px; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; }
 .btn-profile { background: var(--accent); color: #fff; }
 .btn-profile:hover { background: #2b4bc9; }
 .btn-reset { background: transparent; color: var(--danger); border: 1px solid rgba(225,49,49,0.3) !important; }
 .btn-reset:hover { background: rgba(225,49,49,0.1); }
-
-/* MOBILE */
 .mobile-header {
-  display: none;
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 52px;
-  background: var(--sidebar-bg);
-  color: #fff;
-  align-items: center;
-  padding: 0 12px;
-  z-index: 101;
-  gap: 12px;
+  display: none; position: fixed; top: 0; left: 0; right: 0; height: 52px;
+  background: var(--sidebar-bg); color: #fff; align-items: center; padding: 0 12px; z-index: 101; gap: 12px;
 }
-.hamburger {
-  background: none; border: none; color: #fff; font-size: 22px; cursor: pointer;
-  padding: 4px;
-}
+.hamburger { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; padding: 4px; }
 .mobile-header h1 { font-size: 16px; font-weight: 700; flex: 1; }
-.mobile-progress {
-  font-size: 11px; color: var(--sidebar-text);
-}
-.overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 99;
-}
-
+.mobile-progress { font-size: 11px; color: var(--sidebar-text); }
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; }
 @media (max-width: 768px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }
@@ -196,99 +105,26 @@ body {
   .mobile-header { display: flex; }
   .main { margin-left: 0 !important; padding-top: 64px !important; }
 }
-
-/* MAIN CONTENT */
-.main {
-  flex: 1;
-  margin-left: 260px;
-  padding: 32px;
-  max-width: 800px;
-}
-
-/* GATE WARNING */
+.main { flex: 1; margin-left: 260px; padding: 32px; max-width: 860px; }
 .gate-warning {
-  background: var(--warning-bg);
-  border: 1px solid var(--warning-border);
-  border-radius: var(--radius);
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #856404;
-  margin-bottom: 20px;
-  display: none;
+  background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: var(--radius);
+  padding: 10px 14px; font-size: 13px; font-weight: 600; color: #856404; margin-bottom: 20px; display: none;
 }
-
-/* DIMENSION CARD */
 .dimension-panel { display: none; }
 .dimension-panel.active { display: block; }
-.dim-header {
-  margin-bottom: 20px;
-}
-.dim-code {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-.dim-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.dim-type {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* GUIDE */
-.guide-box {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-bottom: 20px;
-}
-.guide-box summary {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  cursor: pointer;
-  user-select: none;
-}
-.guide-box .guide-content {
-  margin-top: 8px;
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
-.guide-box .guide-content li {
-  margin-bottom: 4px;
-  margin-left: 16px;
-}
-
-/* SCORE BUTTONS */
-.score-group {
-  display: flex;
-  gap: 0;
-  margin-bottom: 16px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
+.dim-header { margin-bottom: 20px; }
+.dim-code { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.dim-title { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.dim-type { font-size: 12px; color: var(--text-muted); }
+.guide-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; }
+.guide-box summary { font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; user-select: none; }
+.guide-box .guide-content { margin-top: 8px; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.guide-box .guide-content li { margin-bottom: 4px; margin-left: 16px; }
+.score-group { display: flex; gap: 0; margin-bottom: 4px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
 .score-btn {
-  flex: 1;
-  padding: 12px 4px;
-  border: none;
-  background: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-muted);
-  transition: all 0.15s;
-  border-right: 1px solid var(--border);
-  text-align: center;
+  flex: 1; padding: 14px 4px; border: none; background: #fff; cursor: pointer;
+  font-size: 15px; font-weight: 700; color: var(--text-muted); transition: all 0.15s;
+  border-right: 1px solid var(--border); text-align: center;
 }
 .score-btn:last-child { border-right: none; }
 .score-btn:hover { background: var(--card-bg); }
@@ -300,227 +136,86 @@ body {
 .score-btn.selected[data-val="+2"], .score-btn.selected[data-val="2"] { background: var(--pos2); }
 .score-btn.selected[data-val="3"] { background: #862e9c; }
 .score-btn.selected[data-val="4"] { background: var(--danger); }
-
-/* SCORE DESCRIPTION */
-.score-desc {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 16px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  min-height: 44px;
-  display: none;
+.score-label { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; opacity: 0.8; }
+/* SCORE DETAIL CARD */
+.score-detail-card {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 18px; margin-bottom: 20px; display: none; font-size: 14px; line-height: 1.6;
+  border-left: 4px solid var(--zero);
 }
-.score-desc.visible { display: block; }
-
+.score-detail-card.visible { display: block; }
+.score-detail-card[data-active="-2"] { border-left-color: var(--neg2); }
+.score-detail-card[data-active="-1"] { border-left-color: var(--neg1); }
+.score-detail-card[data-active="0"] { border-left-color: var(--zero); }
+.score-detail-card[data-active="+1"], .score-detail-card[data-active="1"] { border-left-color: var(--pos1); }
+.score-detail-card[data-active="+2"], .score-detail-card[data-active="2"] { border-left-color: var(--pos2); }
+.score-detail-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.score-detail-card .detail-row { margin-bottom: 6px; }
+.score-detail-card .detail-label { font-weight: 600; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+.score-detail-card .detail-val { font-size: 13px; margin-top: 1px; }
+.score-detail-card .ct-row { background: rgba(59,91,219,0.06); border-radius: 4px; padding: 6px 10px; margin-top: 8px; font-size: 13px; }
+.score-detail-card .ct-label { font-weight: 600; color: var(--accent); font-size: 11px; text-transform: uppercase; }
+/* FRAMEWORKS */
+.frameworks-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 20px; }
+.frameworks-box summary { font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer; user-select: none; }
+.frameworks-box .fw-content { margin-top: 10px; font-size: 12px; overflow-x: auto; }
+.frameworks-box table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.frameworks-box th { background: var(--sidebar-bg); color: #fff; padding: 6px 8px; text-align: left; font-size: 11px; white-space: nowrap; }
+.frameworks-box td { padding: 5px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.frameworks-box tr:hover { background: rgba(59,91,219,0.04); }
 /* SPECIFIERS */
-.specifiers {
-  margin-top: 16px;
-}
-.specifiers h4 {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.spec-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  flex-wrap: wrap;
-}
+.specifiers { margin-top: 16px; }
+.specifiers h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.spec-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
 .spec-row:last-child { border-bottom: none; }
-.spec-row label {
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.spec-row input[type="checkbox"],
-.spec-row input[type="radio"] {
-  accent-color: var(--accent);
-}
-.spec-row select, .spec-row input[type="text"] {
-  font-size: 13px;
-  padding: 4px 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: #fff;
-}
+.spec-row label { font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.spec-row input[type="checkbox"], .spec-row input[type="radio"] { accent-color: var(--accent); }
+.spec-row select, .spec-row input[type="text"] { font-size: 13px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 4px; background: #fff; }
 .spec-row input[type="text"] { width: 200px; }
-.spec-sub {
-  display: none;
-  margin-left: 28px;
-}
+.spec-sub { display: none; margin-left: 28px; }
 .spec-sub.visible { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.spec-warning {
-  color: var(--danger);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* NAVIGATION BUTTONS */
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-}
+.spec-warning { color: var(--danger); font-size: 12px; font-weight: 600; }
+.nav-buttons { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); }
 .btn-nav {
-  padding: 10px 20px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
-  transition: all 0.15s;
+  padding: 10px 20px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: #fff; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text); transition: all 0.15s;
 }
 .btn-nav:hover { background: var(--card-bg); border-color: var(--accent); color: var(--accent); }
 .btn-nav.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn-nav.primary:hover { background: #2b4bc9; }
 .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
-
-/* PROFILE PANEL */
-#profilePanel {
-  display: none;
-}
+#profilePanel { display: none; }
 #profilePanel.active { display: block; }
-.profile-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-.profile-table th {
-  text-align: left;
-  padding: 8px 12px;
-  background: var(--sidebar-bg);
-  color: #fff;
-  font-weight: 600;
-  font-size: 12px;
-}
-.profile-table td {
-  padding: 6px 12px;
-  border-bottom: 1px solid var(--border);
-}
+.profile-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 20px; }
+.profile-table th { text-align: left; padding: 8px 12px; background: var(--sidebar-bg); color: #fff; font-weight: 600; font-size: 12px; }
+.profile-table td { padding: 6px 12px; border-bottom: 1px solid var(--border); }
 .profile-table tr:hover { background: var(--card-bg); }
-.profile-table .score-cell {
-  font-weight: 700;
-  text-align: center;
-  min-width: 48px;
-}
-.profile-table .spec-cell {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-.profile-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
+.profile-table .score-cell { font-weight: 700; text-align: center; min-width: 48px; }
+.profile-table .spec-cell { font-size: 12px; color: var(--text-muted); }
+.profile-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 .profile-actions .btn-nav { font-size: 13px; }
-
-/* BAR CHART */
-.bar-chart {
-  margin: 24px 0;
-}
-.bar-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 3px;
-  font-size: 11px;
-}
-.bar-label {
-  width: 120px;
-  text-align: right;
-  padding-right: 8px;
-  color: var(--text-muted);
-  flex-shrink: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.bar-track {
-  flex: 1;
-  height: 16px;
-  background: var(--card-bg);
-  border-radius: 2px;
-  position: relative;
-  border: 1px solid var(--border);
-}
-.bar-center {
-  position: absolute;
-  left: 50%;
-  top: 0; bottom: 0;
-  width: 1px;
-  background: var(--border);
-}
-.bar-fill {
-  position: absolute;
-  top: 2px; bottom: 2px;
-  border-radius: 1px;
-  transition: all 0.3s;
-}
-.bar-val {
-  width: 32px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 11px;
-  flex-shrink: 0;
-}
-
-/* TWO-AXIS */
-.two-axis-container {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.two-axis-container .axis-group {
-  flex: 1;
-  min-width: 200px;
-}
-.axis-group h4 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-/* TOAST */
+.bar-chart { margin: 24px 0; }
+.bar-row { display: flex; align-items: center; margin-bottom: 3px; font-size: 11px; }
+.bar-label { width: 120px; text-align: right; padding-right: 8px; color: var(--text-muted); flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { flex: 1; height: 16px; background: var(--card-bg); border-radius: 2px; position: relative; border: 1px solid var(--border); }
+.bar-center { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.bar-fill { position: absolute; top: 2px; bottom: 2px; border-radius: 1px; transition: all 0.3s; }
+.bar-val { width: 32px; text-align: center; font-weight: 700; font-size: 11px; flex-shrink: 0; }
+.two-axis-container { display: flex; gap: 24px; flex-wrap: wrap; }
+.two-axis-container .axis-group { flex: 1; min-width: 200px; }
+.axis-group h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 .toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--sidebar-bg);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  z-index: 200;
-  transform: translateY(80px);
-  opacity: 0;
-  transition: all 0.3s;
+  position: fixed; bottom: 24px; right: 24px; background: var(--sidebar-bg); color: #fff;
+  padding: 12px 20px; border-radius: var(--radius); font-size: 13px; font-weight: 600;
+  z-index: 200; transform: translateY(80px); opacity: 0; transition: all 0.3s;
 }
 .toast.show { transform: translateY(0); opacity: 1; }
-
-/* Scrollbar */
 .sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
 </style>
 </head>
 <body>
 
-<!-- Mobile header -->
 <div class="mobile-header">
   <button class="hamburger" onclick="toggleSidebar()">&#9776;</button>
   <h1>bMSE</h1>
@@ -528,7 +223,6 @@ body {
 </div>
 <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-<!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <h1>bMSE Scorer</h1>
@@ -551,7 +245,6 @@ body {
   </div>
 </aside>
 
-<!-- Main Content -->
 <main class="main" id="mainContent">
   <div class="gate-warning" id="gateWarning"></div>
   <div id="dimensionsContainer"></div>
@@ -578,28 +271,145 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DIMENSION DEFINITIONS ──
+// ── DIMENSION DEFINITIONS WITH FULL SCORING DATA ──
 const DIMS = [
   {
     id:'NC.conciencia', code:'NC', title:'Conciencia', type:'gate',
-    scores:{'-2':'Coma/estupor','-1':'Obnubilación','0':'Vigilia normal','+1':'Hiperalerta','+2':'Hipervigilancia con interferencia'},
-    guide:['&iquest;El paciente est&aacute; despierto espont&aacute;neamente?','&iquest;Mantiene vigilia sin est&iacute;mulo?','&iquest;Puede relajarse? &iquest;Puede dormir?','&iquest;Hay momentos m&aacute;s l&uacute;cidos y otros m&aacute;s confusos?','&iquest;Qu&eacute; d&iacute;a es hoy? &iquest;D&oacute;nde estamos? &iquest;C&oacute;mo se llama?'],
+    scores:{
+      '-2':'Coma / estupor',
+      '-1':'Obnubilación',
+      '0':'Vigilia normal',
+      '+1':'Hiperalerta',
+      '+2':'Hipervigilancia con interferencia'
+    },
+    details:{
+      '-2':{
+        nivel:'Coma / estupor',
+        loQueVes:'Ojos cerrados. No responde a voz. Postura flácida o decorticada. Requiere estímulo intenso.',
+        loQueDice:'No verbaliza, o sonidos ininteligibles.',
+        contra:'Urgencia médica. El clínico evalúa estado vital, no estado mental.',
+        clasica:'AMDP: 1 grave (vigilancia disminuida grave), 2 (obnubilación). ICD-11: MB20.0 (estupor), MB20.1 (coma). Fish: Delirium, Estupor, Coma, Torpor, Mutismo. Eguíluz: Delirium, Estupor, Coma, Obnubilación, Somnolencia, Sopor.'
+      },
+      '-1':{
+        nivel:'Obnubilación',
+        loQueVes:'Somnoliento. Parpadeo lento. Latencia de respuesta aumentada. Se duerme si no se estimula. Confuso al despertar.',
+        loQueDice:'"¿Qué?..." Respuestas con latencia. Pierde el hilo. "Me cuesta pensar".',
+        contra:'Preocupación: "¿lo estoy perdiendo?" Necesidad de repetir, hablar más fuerte.',
+        clasica:'AMDP: 1 leve (vigilancia disminuida leve), 3 (estrechamiento). Fish: Confusión. Eguíluz: Obnubilación, Somnolencia.'
+      },
+      '0':{
+        nivel:'Vigilia normal',
+        loQueVes:'Despierto, contacto visual adecuado, responde en tiempo proporcionado.',
+        loQueDice:'Responde con fluidez y coherencia.',
+        contra:'Cómoda, fluida.',
+        clasica:''
+      },
+      '+1':{
+        nivel:'Hiperalerta',
+        loQueVes:'Ojos muy abiertos. Scanning visual del entorno. Movimientos de orientación frecuentes. Respuestas rápidas, quizá precipitadas.',
+        loQueDice:'"No puedo relajarme." "Estoy muy alerta." Respuestas rápidas pero coherentes.',
+        contra:'El clínico nota la tensión del paciente. Leve contagio de alerta.',
+        clasica:'AMDP: 4 (expansión de conciencia). Eguíluz: Hipervigilia, Hiperfrenia.'
+      },
+      '+2':{
+        nivel:'Hipervigilancia con interferencia',
+        loQueVes:'Scanning constante. Postura de alerta rígida. No puede cerrar los ojos. Agotamiento visible pero no logra descansar. Startle ante estímulos menores.',
+        loQueDice:'"No puedo dormir." "No puedo apagar mi cabeza." "Siento que no puedo bajar la guardia." O no puede articular por agotamiento.',
+        contra:'El clínico se siente observado. Incomodidad ante la intensidad. Impulso de tranquilizar.',
+        clasica:'Eguíluz: Hipervigilia, Hiperfrenia. Reischies-2025: ch04 (hipervigilancia-hiperactivación).'
+      }
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','1 grave, 2 (obnubilación)','1 leve, 3 (estrechamiento)','—','4 (expansión de conciencia)','— (no captura)'],
+        ['ICD-11','MB20.0 (estupor), MB20.1 (coma)','MB21.5 (distractibilidad)','—','—','—'],
+        ['DSM-5','Delirium, NCD mayor','Delirium','—','—','—'],
+        ['Fish (2019)','Delirium, Estupor, Coma, Estado crepuscular, Torpor, Mutismo','Confusión','—','—','—'],
+        ['Eguíluz (2005)','Delirium, Estupor, Coma, Obnubilación, Somnolencia, Sopor','Obnubilación, Somnolencia','—','Hipervigilia, Hiperfrenia','Hipervigilia, Hiperfrenia'],
+        ['Reischies-2025','ch08 (obnubilación-somnolencia, obnubilación-delirium)','ch08 (conciencia estrechada)','—','ch08 (alteración experiencia consciente)','ch04 (hipervigilancia)']
+      ]
+    },
+    guide:['¿El paciente está despierto espontáneamente? Si no: estímulo verbal → táctil → nociceptivo','¿Mantiene vigilia durante la entrevista sin estímulo?','¿La alerta es proporcionada al contexto?','¿Ha estado más somnoliento o confuso de lo habitual?','¿Puede relajarse? ¿Puede dormir? ¿Siente que no puede apagar su alerta?','¿Hay momentos del día en que está más lúcido y otros más confuso?','Orientación: ¿Qué día es hoy? ¿Dónde estamos? ¿Cómo se llama?'],
     specifiers:[
-      {id:'F',type:'checkbox',label:'[F] Fluctúa'},
-      {id:'O:T',type:'checkbox',label:'[O:T] Tiempo'},
-      {id:'O:E',type:'checkbox',label:'[O:E] Espacio'},
-      {id:'O:P',type:'checkbox',label:'[O:P] Persona'}
+      {id:'F',type:'checkbox',label:'[F] Fluctuación'},
+      {id:'O:T',type:'checkbox',label:'[O:T] Desorientación temporal'},
+      {id:'O:E',type:'checkbox',label:'[O:E] Desorientación espacial'},
+      {id:'O:P',type:'checkbox',label:'[O:P] Desorientación personal'}
+    ]
+  },
+  {
+    id:'F1.expresividad', code:'F1', title:'Expresividad comunicativa', type:'bipolar',
+    scores:{'-2':'Flat','-1':'Restricted','0':'Broad (proporcional)','+1':'Exaggerated','+2':'Labile/desbordada'},
+    details:{
+      '-2':{nivel:'Flat',loQueVes:'Cara inmóvil, voz monótona, sin gestos, contacto visual ausente/fijo-vacío. No cambia con temas emocionales.',loQueDice:'Respuestas breves, sin entonación emocional.',contra:'',clasica:'AMDP: 61 (afecto embotado). DSM-5: SZ diminished emotional expression. Fish: Aplanamiento afectivo, Embotamiento.'},
+      '-1':{nivel:'Restricted',loQueVes:'Rango limitado: sonríe brevemente, prosodia reducida, gestos mínimos. Responde pero "apagado".',loQueDice:'Respuestas con poco color emocional.',contra:'',clasica:'AMDP: 61 leve.'},
+      '0':{nivel:'Broad (proporcional)',loQueVes:'Expresión proporcional: sonríe cuando corresponde, voz modulada, gestos ilustrativos, mirada social natural.',loQueDice:'Comunicación emocionalmente congruente.',contra:'',clasica:''},
+      '+1':{nivel:'Exaggerated',loQueVes:'Amplificada: ríe fuerte, llora fácil, gestos dramáticos, prosodia teatral. Pero congruente con contenido.',loQueDice:'Expresión emocional amplificada pero coherente.',contra:'',clasica:'AMDP: 66 (euforia expresiva).'},
+      '+2':{nivel:'Labile/desbordada',loQueVes:'Cambios rápidos, desproporcionados, sin control: ríe→llora en segundos, expresión no match trigger.',loQueDice:'Expresión emocional incongruente con el contenido.',contra:'',clasica:'AMDP: 68 (irritabilidad grave), 67 (disforia expresiva). Fish: Excitación, Labilidad.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','61 (afecto embotado)','61 leve','—','66 (euforia expresiva)','68 (irritabilidad grave), 67 (disforia)'],
+        ['ICD-11','MB24.64 (afecto inapropiado), MB23.K (pobreza habla)','—','—','—','MB24.1 (ira), MB24.C (irritabilidad)'],
+        ['DSM-5','SZ (diminished emotional expression)','—','—','—','BD-I (expansive, pressured)'],
+        ['Fish (2019)','Aplanamiento afectivo, Embotamiento','—','—','—','Excitación, Labilidad'],
+        ['HiTOP','Inexpressivity','—','—','—','—']
+      ]
+    },
+    guide:['Observe expresión facial, prosodia vocal, gestualidad, contacto visual durante la entrevista.','¿Cambia la expresión con temas emocionales?','¿Los cambios son proporcionales o desproporcionados al contenido?'],
+    specifiers:[
+      {id:'canal',type:'radio',label:'Canal afectado',options:['[facial]','[vocal]','[gestual]','[contacto visual]','[global]'],showWhen:'!=0'},
+      {id:'mecanismo_neg',type:'radio',label:'Mecanismo (polo −)',options:['[negativos]','[depresivo]','[neurológico]','[disociativo]','[developmental]'],showWhen:'<0'},
+      {id:'mecanismo_pos',type:'radio',label:'Mecanismo (polo +)',options:['[maníaco]','[labile]','[teatral]','[pseudobulbar]'],showWhen:'>0'}
     ]
   },
   {
     id:'F2.velocidad', code:'F2', title:'Velocidad psicomotora', type:'bipolar',
-    scores:{'-2':'Retardo severo','-1':'Enlentecimiento','0':'Proporcional','+1':'Aceleración','+2':'Agitación'},
-    guide:['Observe latencia de respuesta, velocidad del habla, cantidad de movimiento espont&aacute;neo.']
+    scores:{'-2':'Retardo severo','-1':'Enlentecimiento sutil','0':'Proporcional','+1':'Activación leve','+2':'Agitación severa'},
+    details:{
+      '-2':{nivel:'Retardo severo',loQueVes:'Latencia respuesta >5s consistente, movimientos enlentecidos visibles, interfiere AVDs. Puede llegar a estupor/mutismo motor.',loQueDice:'Respuestas con latencia prolongada. Voz apagada. Contenido reducido.',contra:'',clasica:'AMDP: 136 (hipocinesia). ICD-11: MB23.N (retardo), MB23.3 (bradifrenia). Fish: Retardo psicomotor, Estupor, Acinesia. Vallejo: Retardo psicomotor, Estupor.'},
+      '-1':{nivel:'Enlentecimiento sutil',loQueVes:'Enlentecimiento detectable por cronometraje o informante. Pausas aumentadas, movimiento ralentizado sin impacto funcional mayor.',loQueDice:'Respuestas algo lentas pero comprensibles.',contra:'',clasica:'Fish: Obstrucción. Eguíluz: Bradifasia.'},
+      '0':{nivel:'Proporcional',loQueVes:'Velocidad proporcional al contexto y demanda.',loQueDice:'Fluidez normal.',contra:'',clasica:''},
+      '+1':{nivel:'Activación leve',loQueVes:'Habla acelerada en temas relevantes, gesticulación aumentada, inquietud postural, dificultad para permanecer quieto.',loQueDice:'Habla más rápido de lo habitual, pero coherente.',contra:'',clasica:'Vallejo: Agitación psicomotora. Forbes: Inquietud motora.'},
+      '+2':{nivel:'Agitación severa',loQueVes:'Imposible permanecer sentado >2 min, taquilalia sostenida, pacing, hand-wringing, movimiento no-dirigido constante.',loQueDice:'Habla presionada, difícil de interrumpir.',contra:'',clasica:'AMDP: 83 (agitación motora). ICD-11: MB23.M (agitación psicomotora). Fish: Excitación psicomotora, Paracinesia. Forbes: Agitación, Habla presionada.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','136 (hipocinesia)','—','—','—','83 (agitación motora)'],
+        ['ICD-11','MB23.N (retardo), MB23.3 (bradifrenia)','—','—','—','MB23.M (agitación psicomotora)'],
+        ['Fish (2019)','Retardo psicomotor, Estupor, Acinesia','Obstrucción','—','—','Excitación psicomotora, Paracinesia'],
+        ['Vallejo (2025)','Retardo psicomotor, Estupor','—','—','Agitación psicomotora','Agitación psicomotora'],
+        ['Eguíluz (2005)','Estupor recurrente, Acinesia psíquica, Bradifasia','Bradifasia','—','—','—'],
+        ['Forbes (2024)','Deterioro psicomotor','—','—','Inquietud motora','Agitación, Habla presionada']
+      ]
+    },
+    guide:['Observe latencia de respuesta, velocidad del habla, cantidad de movimiento espontáneo.','¿Se mueve con naturalidad o hay enlentecimiento/aceleración?','¿Puede permanecer sentado?'],
+    specifiers:[
+      {id:'motor',type:'checkbox',label:'[motor] Afecta velocidad corporal'},
+      {id:'lenguaje',type:'checkbox',label:'[lenguaje] Afecta output verbal'},
+      {id:'agresivo',type:'checkbox',label:'[conducta agresiva] (solo +2)',showWhen:'==+2'}
+    ]
   },
   {
     id:'NM.coordinación', code:'NM', title:'Perfil Neuromotor', type:'profile',
-    scores:{'0':'Normal','-1':'Torpeza/NSS aislados','-2':'Descoordinación/NSS múltiples'},
-    guide:['Observe movimientos involuntarios.','Evaluar coordinación con alternancia rápida, dedo-nariz, secuencia de Luria.'],
+    scores:{'0':'Normal','-1':'Torpeza leve / NSS aislados','-2':'Descoordinación franca / NSS múltiples'},
+    details:{
+      '0':{nivel:'Normal',loQueVes:'Movimientos fluidos, bien secuenciados. Gesticula con naturalidad. Marcha normal.',loQueDice:'',contra:'',clasica:''},
+      '-1':{nivel:'Torpeza leve / NSS aislados',loQueVes:'Movimientos ligeramente torpes. Synkinesias al hacer tareas. Lentitud en alternancia rápida. Leve dismetría.',loQueDice:'',contra:'',clasica:'Reischies-2025: ch05 (dispraxia).'},
+      '-2':{nivel:'Descoordinación franca / NSS múltiples',loQueVes:'Dismetría evidente. Falla secuencia puño-canto-palma. Marcha tándem inestable. Synkinesias prominentes. Torpeza gruesa en tareas bimanuales.',loQueDice:'',contra:'',clasica:'Reischies-2025: ch05 (torpeza motora).'}
+    },
+    frameworks:{
+      headers:['','NM −2','NM −1','NM 0','Especificadores'],
+      rows:[
+        ['AMDP 9e','— (no evalúa NSS)','—','—','87 (temblor), 88 (rigidez), 89 (acatisia), 90 (diskinesia)'],
+        ['ICD-11','—','—','—','MB22.2 (estereotipia), MB22.3 (tic), MB22.7 (distonía), MB22.8 (diskinesia)'],
+        ['DSM-5','— (no evalúa NSS)','—','—','Trastorno de movimientos estereotipados, Trastorno de tics, SEP']
+      ]
+    },
+    guide:['Observe movimientos involuntarios durante la entrevista.','Alternancia rápida (pronación-supinación): 20s','Dedo-nariz (ojos cerrados): 20s','Puño-canto-palma (Luria): 30s','Synkinesias: observe durante pruebas anteriores','Marcha tándem (si ambulatorio): 30s'],
     specifiers:[
       {id:'tic',type:'checkbox',label:'[tic]',sub:{type:'text',placeholder:'Descripción'}},
       {id:'estereotipia',type:'checkbox',label:'[estereotipia]',sub:{type:'select',options:['espontánea ⚠️','farmacológica','catatónica']}},
@@ -611,117 +421,407 @@ const DIMS = [
     ]
   },
   {
-    id:'F1.expresividad', code:'F1', title:'Expresividad comunicativa', type:'bipolar',
-    scores:{'-2':'Flat (amímica, aprosódica)','-1':'Restringida','0':'Proporcional','+1':'Expansiva','+2':'Lábil/exagerada'},
-    guide:['Observe expresión facial, prosodia, gestualidad, contacto visual, variabilidad emocional durante la entrevista.']
-  },
-  {
     id:'F5a.control', code:'F5a', title:'Control atencional descendente', type:'bipolar',
-    scores:{'-2':'Sub-regulado (distractible severo)','-1':'Foco inestable','0':'Flexible','+1':'Foco sticky','+2':'Sobre-regulado (hiperfoco rígido)'},
-    guide:['&iquest;Le cuesta concentrarse en lo que tiene que hacer?','&iquest;Puede concentrarse bien en algo que le interesa mucho?','&iquest;Le pasa que se queda ‘pegado’ en algo?'],
-    specifiers:[{id:'oscila',type:'checkbox',label:'Oscila según estímulo (TDAH): -2↔2'}]
+    scores:{'-2':'Sub-regulado','-1':'Foco inestable','0':'Flexible','+1':'Foco sticky','+2':'Sobre-regulado'},
+    details:{
+      '-2':{nivel:'Sub-regulado',loQueVes:'No completa una frase sin saltar. Responde a todo estímulo. Entrevista caótica. Narrativa fragmentada.',loQueDice:'"No puedo concentrarme en nada." "¿Qué me estaba preguntando?"',contra:'Frustración: el clínico no logra mantener estructura. Impulso de simplificar.',clasica:''},
+      '-1':{nivel:'Foco inestable',loQueVes:'Se distrae pero recupera. Pierde detalles. Necesita repetición. Latencia variable.',loQueDice:'"A veces pierdo el hilo." "Me cuesta un poco."',contra:'Leve impaciencia. Necesidad de repetir.',clasica:''},
+      '0':{nivel:'Flexible',loQueVes:'Sigue conversación fluidamente. Cambia de tema cuando corresponde. Atento sin esfuerzo visible.',loQueDice:'"Estoy atento." Sigue sin reportar dificultad.',contra:'Cómoda, fluida.',clasica:''},
+      '+1':{nivel:'Foco sticky',loQueVes:'Monólogos. Vuelve al mismo tema. Cuesta redirigir. Pide "déjeme terminar" repetidamente.',loQueDice:'"Es que necesito explicar esto bien." "No puedo pasar a otra cosa hasta que termine."',contra:'Impaciencia: "no puedo sacarlo de ahí." Sensación de estar atrapado en el tema del paciente.',clasica:''},
+      '+2':{nivel:'Sobre-regulado',loQueVes:'No responde a redirección. Persevera en un tema/idea. Hiperfoco rígido visible. Ignora preguntas que cambien de tema.',loQueDice:'"No puedo sacarme esto de la cabeza." "Solo puedo pensar en una cosa." O no reporta — no se da cuenta que persevera.',contra:'Exasperación o resignación. El clínico deja de intentar redirigir.',clasica:''}
+    },
+    guide:['¿Puede seguir una pregunta completa sin perder el hilo?','¿Puede ser redirigido a otro tema?','¿Le cuesta concentrarse en las cosas que tiene que hacer?','¿Puede concentrarse bien en algo que le interesa mucho? (Si sí → TDAH pattern)','¿Le pasa que se queda "pegado" en algo y le cuesta cambiar a otra cosa?','Digit span backward: "Repita estos números al revés: 7-2-9"'],
+    specifiers:[{id:'oscila',type:'checkbox',label:'Oscila según estímulo (TDAH): −2↔+2 [stimulus-dependent]'}]
   },
   {
     id:'F5b.captura', code:'F5b', title:'Captura atencional ascendente', type:'unipolar_pos',
     scores:{'0':'Normal','+1':'Captura detectable','+2':'Captura severa'},
-    guide:['&iquest;Se distrae con ruidos?','&iquest;Le vienen pensamientos que no puede sacar?'],
+    details:{
+      '0':{nivel:'Normal',loQueVes:'No se distrae por estímulos irrelevantes. Responde a interrupciones legítimas.',loQueDice:'No reporta distracción involuntaria.',contra:'',clasica:''},
+      '+1':{nivel:'Captura detectable',loQueVes:'Se distrae con ruidos leves [E]. O pausa y "se va" momentáneamente [I]. Recupera con esfuerzo.',loQueDice:'"A veces se me mete un pensamiento y me cuesta sacarlo." "Los ruidos me molestan más de lo normal."',contra:'',clasica:''},
+      '+2':{nivel:'Captura severa',loQueVes:'No puede mantener conversación por captura constante. Mirada fija (captura interna) o scanning constante (captura externa). No responde cuando está capturado.',loQueDice:'"No puedo parar de pensar en eso." "Todo me distrae." O no puede articular — está capturado en el momento.',contra:'',clasica:''}
+    },
+    guide:['¿Se distrae fácilmente con ruidos o cosas que pasan alrededor?','¿Le vienen pensamientos que no puede sacar de la cabeza? ¿Qué tipo?','Cuando eso le viene, ¿puede volver a lo que estaba haciendo, o lo atrapa completamente?'],
     specifiers:[
-      {id:'captura_type',type:'radio',label:'Tipo',options:['[E] Externa','[I:worry]','[I:rumia]','[I:obsesión]','[I:flashback]','[E+I]'],showWhen:'>=1'}
+      {id:'captura_type',type:'radio',label:'Tipo de captura',options:['[E] Externa','[I:worry]','[I:rumia]','[I:obsesión]','[I:flashback]','[E+I]'],showWhen:'>=1'}
     ]
   },
   {
-    id:'F3.tono', code:'F3', title:'Tono hedónico', type:'bipolar',
-    scores:{'-2':'Anhedonia profunda','-1':'Hipohedonia','0':'Proporcional','+1':'Hedonismo expansivo','+2':'Euforia sostenida'},
-    guide:['&iquest;Disfruta las cosas que antes disfrutaba?','&iquest;Se siente excesivamente bien?']
+    id:'F3.tono', code:'F3', title:'Tono hedónico (liking)', type:'bipolar',
+    scores:{'-2':'Anhedonia profunda','-1':'Hipohedonia selectiva','0':'Placer proporcional','+1':'Reasignación incipiente','+2':'Hedonic shift consolidado'},
+    details:{
+      '-2':{nivel:'Anhedonia profunda',loQueVes:'Flat ante estímulos placenteros. Come sin reacción. No responde a humor, música, contacto.',loQueDice:'"No me sabe a nada." "No siento nada cuando..." "Antes me gustaba pero ya no."',contra:'Impotencia: nada que el clínico ofrezca genera resonancia.',clasica:'AMDP: 60 (pérdida sentimientos), 63 (ánimo deprimido grave). ICD-11: MB24.2 (anhedonia). DSM-5: MDD.'},
+      '-1':{nivel:'Hipohedonia selectiva',loQueVes:'Reactividad reducida en contextos específicos.',loQueDice:'"Ya no disfruto [área] como antes, pero [otra] todavía está bien."',contra:'Preocupación calibrada.',clasica:'AMDP: 62 (pérdida vitalidad), 67 (disforia). ICD-11: MB24.5 leve.'},
+      '0':{nivel:'Placer proporcional',loQueVes:'Sonríe al hablar de cosas placenteras. Expresión congruente.',loQueDice:'"Sí, disfruté la cena." Proporcional.',contra:'Entrevista cómoda.',clasica:''},
+      '+1':{nivel:'Reasignación incipiente',loQueVes:'Rechaza recompensas normales sutilmente. Reporta calma con restricción/ejercicio excesivo. Ambivalente.',loQueDice:'"No tengo hambre pero me siento bien sin comer." "Correr hasta que duele me calma." Minimiza lo nuevo.',contra:'Confusión: "¿por qué rechaza cosas que le gustarían?"',clasica:''},
+      '+2':{nivel:'Hedonic shift consolidado',loQueVes:'Busca activamente el estímulo aversivo. Evita estímulos normalmente placenteros. La conducta aversiva es ego-sintónica.',loQueDice:'"No necesito comer, me siento mejor así." "Cortarme me hace sentir viva." El estímulo aversivo es preferido al placentero.',contra:'Alarma: la conducta dañina es vivida como placentera — no hay motivación intrínseca para cambiar.',clasica:'DSM-5: AN (restricción reforzante), NSSI.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','60 (pérdida sentimientos), 63 (ánimo deprimido grave)','62 (pérdida vitalidad), 67 (disforia)','—','—','—'],
+        ['ICD-11','MB24.2 (anhedonia), MB24.5 (ánimo deprimido)','MB24.5 leve, MB24.7 (disforia)','—','—','—'],
+        ['DSM-5','MDD, SZ (aplanamiento)','Distimia','—','—','AN, NSSI'],
+        ['RDoC PVS','Reward Responsiveness ausente','Atenuada','—','—','No capturado (GAP)']
+      ]
+    },
+    guide:['¿Disfruta las cosas que antes disfrutaba?','¿Ha notado que ya no le sabe a nada la comida, la música, el contacto?','¿Hay algo que antes no le gustaba y ahora le produce calma o placer?'],
+    specifiers:[
+      {id:'target',type:'radio',label:'Target hedónico (+1/+2)',options:['Restricción','Dolor','Purga','Ejercicio excesivo','Riesgo','Otro'],showWhen:'>0'}
+    ]
   },
   {
-    id:'F3.anticipación', code:'F3', title:'Anticipación hedónica', type:'bipolar',
-    scores:{'-2':'No anticipa placer','-1':'Anticipación reducida','0':'Proporcional','+1':'Anticipación excesiva','+2':'Wanting desacoplado'},
-    guide:['&iquest;Tiene ganas de hacer cosas?','&iquest;Espera con ilusión algo?']
+    id:'F3.anticipación', code:'F3', title:'Anticipación hedónica (wanting)', type:'bipolar',
+    scores:{'-2':'Anticipación ausente','-1':'Anticipación atenuada','0':'Anticipación calibrada','+1':'Anticipación inflada','+2':'Prior crónicamente inflado'},
+    details:{
+      '-2':{nivel:'Anticipación ausente',loQueVes:'No hace planes. Rechaza invitaciones. Agenda vacía. No inicia actividades placenteras aunque estén disponibles.',loQueDice:'"Para qué, si da igual." "No quiero nada." No nombra algo que espere con ganas.',contra:'',clasica:'AMDP: 80 (falta impulso), 10 (apatía). ICD-11: MB24.4 (apatía), MB22.0 (avolición). Fish: Anhedonia, Apatía.'},
+      '-1':{nivel:'Anticipación atenuada',loQueVes:'Acepta planes de otros pero no genera los suyos. No se le iluminan los ojos al hablar del futuro.',loQueDice:'"Probablemente no lo disfrute." "No creo que valga la pena, pero bueno." Acepta con desgano.',contra:'',clasica:'AMDP: 62 (pérdida vitalidad). DSM-5: Distimia.'},
+      '0':{nivel:'Anticipación calibrada',loQueVes:'Habla de planes con tono proporcional. Equilibrio entre anticipar y hacer.',loQueDice:'"Sí, tengo ganas de ir." "Estoy esperando el viernes." Proporcional.',contra:'',clasica:''},
+      '+1':{nivel:'Anticipación inflada',loQueVes:'Habla rápido sobre planes futuros. Más energizado al planificar que al ejecutar. Empezó 3 cosas esta semana.',loQueDice:'"Va a ser INCREÍBLE." "Este negocio va a cambiar todo." Planifica en exceso alrededor de la expectativa.',contra:'',clasica:'AMDP: 66 (euforia leve), 82 (impulso aumentado leve). ICD-11: MB24.8 (ánimo elevado). DSM-5: Hipomanía.'},
+      '+2':{nivel:'Prior crónicamente inflado / wanting >> liking',loQueVes:'Agenda repleta de planes grandiosos. Invirtió dinero que no tiene. No explica por qué esta vez será diferente.',loQueDice:'"Esto va a ser lo mejor que me ha pasado." Múltiples proyectos simultáneos, todos "seguros."',contra:'',clasica:'AMDP: 66 (euforia), 82 (impulso aumentado grave). ICD-11: MB24.9 (euforia). DSM-5: Manía, Gambling, SUDs.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','80 (falta impulso), 10 (apatía)','62 (pérdida vitalidad)','—','66 (euforia leve), 82 (impulso↑)','66 (euforia), 82 (impulso↑ grave)'],
+        ['ICD-11','MB24.4 (apatía), MB22.0 (avolición)','—','—','MB24.8 (ánimo elevado)','MB24.9 (euforia), MB22.5 (actividad↑)'],
+        ['DSM-5','MDD (anhedonia), SZ (avolición)','Distimia','—','Hipomanía','Manía, Gambling, SUDs'],
+        ['Fish (2019)','Anhedonia, Apatía','Anhedonia','—','Manía','Manía, Éxtasis'],
+        ['Vallejo (2025)','Anhedonia, Apatía, Abulia','Anhedonia','—','Alegría patológica','Alegría patológica']
+      ]
+    },
+    guide:['¿Hay algo que espere con ganas esta semana?','¿Qué planes tiene?','Pregunta detectora: respuesta fluida y específica = 0. Silencio o "nada" = −2. Avalancha = +2.']
   },
   {
     id:'F3.drive', code:'F3', title:'Drive motivacional', type:'bipolar',
-    scores:{'-2':'Avolición','-1':'Iniciación reducida','0':'Proporcional','+1':'Drive elevado','+2':'Drive expansivo'},
-    guide:['&iquest;Tiene energía para hacer las cosas?','&iquest;Siente que tiene demasiados planes?']
+    scores:{'-2':'Avolición','-1':'Iniciación reducida','0':'Drive proporcional','+1':'Approach motivation elevada','+2':'Approach motivation desregulada'},
+    details:{
+      '-2':{nivel:'Avolición',loQueVes:'No se levanta sin empuje externo. AVD deterioradas. No inicia nada con propósito.',loQueDice:'"No quiero nada." / "Quiero pero no puedo." (ver especificador [F] vs [I]).',contra:'Impotencia (falta) o frustración empática (inhibición): "quiere pero no puede".',clasica:'AMDP: 80 (falta grave), 81 (inhibición grave). ICD-11: MB22.0 (avolición), MB24.4 (apatía). DSM-5: SZ negativos, MDD.'},
+      '-1':{nivel:'Iniciación reducida',loQueVes:'Inicia actividades pero las deja incompletas. Latencia aumentada. Esfuerzo visible.',loQueDice:'"Me cuesta arrancar." "Empiezo cosas pero las dejo." "Todo me cansa."',contra:'Preocupación: el clínico empuja y el paciente responde parcialmente.',clasica:'AMDP: 80 leve, 81 leve, 62, 105. ICD-11: MG22 (fatiga). DSM-5: Distimia.'},
+      '0':{nivel:'Drive proporcional',loQueVes:'Actividades proporcionales a contexto. Completa tareas.',loQueDice:'"Hice lo que tenía que hacer." Proporcional.',contra:'Entrevista cómoda.',clasica:''},
+      '+1':{nivel:'Approach motivation elevada',loQueVes:'Múltiples actividades dirigidas a metas. Energía sostenida. Habla de planes concretos. Reorienta si le dan feedback.',loQueDice:'"Tengo muchos planes." "No me canso." Acepta que quizá es mucho si se le señala.',contra:'Energía contagiosa pero contenible. El clínico puede reconducir.',clasica:'AMDP: 82 leve (impulso aumentado). ICD-11: MB22.4 (energía aumentada). DSM-5: BD hipomanía.'},
+      '+2':{nivel:'Approach motivation desregulada',loQueVes:'Múltiples planes simultáneos, todos con propósito (aunque irreal). Persiste a pesar de resultados adversos. No frena ante límites externos.',loQueDice:'"Duermo 3 horas y es suficiente." "Tengo 5 proyectos y todos van a funcionar." Minimiza consecuencias.',contra:'Agotamiento del clínico. Intentos de poner límites rebotan.',clasica:'AMDP: 82 grave. ICD-11: MB22.5 (actividad dirigida a metas aumentada). DSM-5: BD manía.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','80 (falta grave), 81 (inhibición grave)','80 leve, 81 leve, 62, 105','—','82 leve (impulso↑)','82 grave (impulso↑)'],
+        ['ICD-11','MB22.0 (avolición), MB24.4 (apatía)','MG22 (fatiga)','—','MB22.4 (energía↑)','MB22.5 (actividad dirigida a metas↑)'],
+        ['DSM-5','SZ negativos, MDD','Distimia','—','BD hipomanía','BD manía: "abnormally increased goal-directed activity"'],
+        ['RDoC PVS','Approach Motivation ausente','Atenuada','—','Elevada','Excesiva, Effort Valuation ausente']
+      ]
+    },
+    guide:['¿Tiene energía para hacer las cosas?','¿Siente que tiene demasiados planes?','¿La actividad es dirigida a metas? (Criterio central: goal-directedness)'],
+    specifiers:[
+      {id:'drive_neg',type:'radio',label:'Polo negativo: tipo',options:['[F] Falta (no quiere)','[I] Inhibición (quiere pero no puede)','[M] Mixto'],showWhen:'<0'},
+      {id:'drive_pos',type:'radio',label:'Polo positivo: fuente',options:['[R] Reward-driven','[D] Desinhibición','[M] Mixto'],showWhen:'>0'}
+    ]
   },
   {
     id:'F4.experiencia', code:'F4', title:'Experiencia del pensamiento', type:'bipolar',
-    scores:{'-2':'Pensamiento vacío/bloqueado','-1':'Enlentecido','0':'Proporcional','+1':'Acelerado/presionado','+2':'Racing/fuga de ideas'},
-    guide:['&iquest;Cómo siente su pensamiento?','&iquest;Va rápido o lento?'],
+    scores:{'-2':'Bloqueo / vacío','-1':'Enlentecimiento subjetivo','0':'Proporcional','+1':'Aceleración subjetiva','+2':'Presión / crowding'},
+    details:{
+      '-2':{nivel:'Bloqueo / vacío (Gedankenabreißen)',loQueVes:'Pausas prolongadas, mirada perdida, interrupción del discurso mid-sentence.',loQueDice:'"No puedo pensar." "Mi mente está en blanco." Thought deprivation.',contra:'',clasica:'AMDP: 23 (Gedankenabreißen). Fish: Bloqueo pensamiento, Inhibición pensamiento.'},
+      '-1':{nivel:'Enlentecimiento subjetivo',loQueVes:'Latencia percibida, esfuerzo visible para responder.',loQueDice:'"Me cuesta concentrarme." "Pienso como con arena."',contra:'',clasica:'AMDP: 15 (enlentecido subjetivo), 17 (constreñido). Reischies: ch10 (thinking retarded).'},
+      '0':{nivel:'Proporcional',loQueVes:'Velocidad y control percibidos como normales.',loQueDice:'No reporta anomalía en la experiencia del pensamiento.',contra:'',clasica:''},
+      '+1':{nivel:'Aceleración subjetiva',loQueVes:'Respuestas rápidas, cambia de tema con facilidad, algo inquieto cognitivamente.',loQueDice:'"Muchas ideas al mismo tiempo." "Mi mente va rápido."',contra:'',clasica:'AMDP: 21 (acelerado). Reischies: ch10 (acceleration). SCIP: M4 (racing thoughts=1).'},
+      '+2':{nivel:'Presión / crowding (Gedankendrängen)',loQueVes:'Habla presionada, no puede parar, múltiples hilos simultáneos.',loQueDice:'"No puedo parar de pensar." Racing thoughts. Thought interference.',contra:'',clasica:'AMDP: 22 (Gedankendrängen). ICD-11: MB24.C (thought pressure). Reischies: ch10 (pressure of thought). Fish: Fuga de ideas.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','23 (Gedankenabreißen)','15 (enlentecido), 17 (constreñido)','—','21 (acelerado)','22 (Gedankendrängen)'],
+        ['ICD-11','—','—','—','—','MB24.C (thought pressure)'],
+        ['Reischies-2025','ch10 (thinking inhibited)','ch10 (thinking retarded)','—','ch10 (acceleration)','ch10 (pressure of thought)'],
+        ['Fish (2019)','Bloqueo pensamiento','Inhibición pensamiento','—','—','Fuga de ideas']
+      ]
+    },
+    guide:['¿Cómo siente su pensamiento? ¿Va rápido o lento?','¿Siente que no puede pensar, que la mente está vacía?','¿Siente que los pensamientos le vienen a presión, que no puede pararlos?'],
     specifiers:[
-      {id:'mind-wandering',type:'checkbox',label:'[mind-wandering]'},
-      {id:'racing',type:'checkbox',label:'[racing]'},
-      {id:'worry-loop',type:'checkbox',label:'[worry-loop]'},
-      {id:'interference',type:'checkbox',label:'[interference]'},
-      {id:'rumination',type:'checkbox',label:'[rumination]'}
+      {id:'mind-wandering',type:'checkbox',label:'[mind-wandering] (TDAH)'},
+      {id:'racing',type:'checkbox',label:'[racing] (manía)'},
+      {id:'worry-loop',type:'checkbox',label:'[worry-loop] (ansiedad)'},
+      {id:'interference',type:'checkbox',label:'[interference] (psicosis prodrómica)'},
+      {id:'rumination',type:'checkbox',label:'[rumination] (depresión/PTSD)'},
+      {id:'depresivo',type:'checkbox',label:'[depresivo]'},
+      {id:'disociativo',type:'checkbox',label:'[disociativo]'},
+      {id:'blocking',type:'checkbox',label:'[blocking] (SZ)'},
+      {id:'cognitivo',type:'checkbox',label:'[cognitivo] (brain fog)'}
     ]
   },
   {
     id:'F4.contenido', code:'F4', title:'Contenido del pensamiento', type:'conviction',
-    scores:{'0':'Sin contenido patológico','1':'Idea sobrevalorada leve','2':'Idea sobrevalorada','3':'Convicción alta','4':'Delirio'},
-    guide:['&iquest;Hay alguna idea que lo preocupe mucho?','&iquest;Qué tan seguro está de eso?'],
+    scores:{'0':'Normal','1':'Preocupación','2':'Obsesión / rumiación','3':'Idea sobrevalorada','4':'Creencia fija'},
+    details:{
+      '0':{nivel:'Normal',loQueVes:'Creencia flexible, insight preservado, modificable con evidencia.',loQueDice:'',contra:'',clasica:'BABS aprox. 0-3.'},
+      '1':{nivel:'Preocupación',loQueVes:'Tema recurrente, ego-sintónica, sin disrupción funcional significativa, modulable con distracción.',loQueDice:'"Preocuparme me protege."',contra:'',clasica:'BABS 4-7. AMDP: 27 (suspicacia), 28 (hipocondría).'},
+      '2':{nivel:'Obsesión / rumiación',loQueVes:'Pensamiento intrusivo recurrente: egodistónico (obsesión) o secuestrante (rumiación). Insight preservado parcialmente.',loQueDice:'Obsesión: "Sé que es irracional pero no puedo dejar de pensarlo." Rumiación: "No puedo parar de darle vueltas."',contra:'',clasica:'BABS 8-12. AMDP: 20 (rumiación), 30-31 (obsesiones/compulsiones). ICD-11: MB24.E (rumiación), MB26.5 (obsesiones).'},
+      '3':{nivel:'Idea sobrevalorada',loQueVes:'Convicción alta SIN quiebre con realidad consensual. Ego-sintónica, defendida, insight parcial/pobre.',loQueDice:'"Esto ES verdad." Acepta posibilidad lógica de error pero no la cree.',contra:'',clasica:'BABS 13-17. AMDP: ZP10 (sobrevalorada). ICD-11: MB26.6. Fish: Idea sobrevalorada.'},
+      '4':{nivel:'Creencia fija',loQueVes:'Convicción absoluta, incorrigible, sin insight. Rechaza refutación.',loQueDice:'Certeza total. No acepta alternativas.',contra:'',clasica:'BABS 18-24. AMDP: 36-46 (delirios), 55-58 (Schneider 1R). ICD-11: MB26.0 (delusiones). Fish: Delirio, Capgras, Cotard, Fregoli.'}
+    },
+    frameworks:{
+      headers:['','Nivel 1','Nivel 2','Nivel 3','Nivel 4'],
+      rows:[
+        ['AMDP 9e','27 (suspicacia), 28 (hipocondría)','20 (rumiación), 30-31 (obsesiones)','ZP10 (sobrevalorada)','36-46 (delirios), 55-58 (Schneider 1R)'],
+        ['ICD-11','MB26.8-9 (referencia, suspicacia)','MB24.E (rumiación), MB26.5 (obsesiones)','MB26.6 (sobrevalorada)','MB26.0 (delusiones), MB26.1 (influencia)'],
+        ['Fish (2019)','—','Obsesión, Compulsión','Idea sobrevalorada','Delirio, Capgras, Cotard, Fregoli, Clérambault'],
+        ['HiTOP','Health Anxiety, Mistrust','—','Disease Conviction, Grandiosity','Delusions']
+      ]
+    },
+    guide:['¿Hay alguna idea que lo preocupe mucho?','¿Qué tan seguro está de eso?','¿Podría estar equivocado? (insight)','0→1: frecuencia + interferencia. 1→2: ego-distonía. 2→3: insight. 3→4: corregibilidad.'],
     specifiers:[
-      {id:'contenido_type',type:'radio',label:'Tipo (nivel 4)',options:['[psicótico]','[no-psicótico]'],showWhen:'==4'}
+      {id:'contenido_type',type:'radio',label:'Tipo (nivel 4)',options:['[psicótico] Delusión','[no-psicótico] EOB'],showWhen:'==4'},
+      {id:'contenido_delirio',type:'radio',label:'Tipo delusión',options:['Persecutoria','Referencia','Grandeza','Somática','Religiosa','Celotípica','Nihilista (Cotard)','Control/pasividad','Culpa','Erotomaníaca','Misidentificación'],showWhen:'==4'}
     ]
   },
   {
     id:'F6.amenaza', code:'F6', title:'Sensibilidad a amenaza', type:'bipolar',
-    scores:{'-2':'Temerario (boldness)','-1':'Despreocupado','0':'Calibrado','+1':'Aprensivo','+2':'Hipervigilante/Pánico'},
-    guide:['&iquest;Hay algo que le preocupe o le dé miedo?','&iquest;Ha tenido ataques de pánico?','&iquest;Le dicen que es arriesgado?'],
+    scores:{'-2':'Temerario (boldness)','-1':'Despreocupado','0':'Proporcional','+1':'Aprensivo','+2':'Hipervigilante / Pánico'},
+    details:{
+      '-2':{nivel:'Temerario (boldness)',loQueVes:'Relajado ante situaciones peligrosas. No evita. Conductas de riesgo.',loQueDice:'"No va a pasar nada." "¿Miedo? No." No reporta preocupaciones.',contra:'Preocupación por el paciente: "no mide el peligro".',clasica:'TriPM Boldness muy alto. No capturado por AMDP, ICD-11, DSM-5 como estado.'},
+      '-1':{nivel:'Despreocupado',loQueVes:'Relajado pero no irresponsable. Poca anticipación de riesgo.',loQueDice:'"Sí, quizá es riesgoso, pero no creo que pase." Minimiza.',contra:'Leve incomodidad: "debería preocuparse más".',clasica:''},
+      '0':{nivel:'Proporcional',loQueVes:'Alerta proporcionada. Se activa y desactiva.',loQueDice:'"Me preocupa [X] pero creo que lo puedo manejar."',contra:'Cómoda.',clasica:''},
+      '+1':{nivel:'Aprensivo',loQueVes:'Tensión visible. Movimientos inquietos. Dificultad relajarse.',loQueDice:'"¿Y si pasa [X]?" "Estoy nervioso por [Y]." Worry focal.',contra:'Empatía: el clínico siente la tensión del paciente.',clasica:'AMDP: 70 (ansiedad leve). ICD-11: MB24.0 (ansiedad).'},
+      '+2':{nivel:'Hipervigilante / Pánico',loQueVes:'Tensión extrema, hipervigilancia, startle [T]. O pánico visible, taquicardia, sudoración, escape [F].',loQueDice:'"No puedo dejar de pensar en eso." "Siento que algo malo va a pasar." O no puede hablar durante pánico.',contra:'Contagio: el clínico se activa. Urgencia de tranquilizar [T]. O alarma ante pánico [F].',clasica:'AMDP: 70 (ansiedad grave), 71 (fobias), 73 (ataques de pánico). ICD-11: MB24.0 grave, MB24.1 (pánico). DSM-5: GAD, Panic disorder, PTSD.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','—','—','—','70 (ansiedad leve)','70 (ansiedad grave), 71 (fobias), 73 (pánico)'],
+        ['ICD-11','—','—','—','MB24.0 (ansiedad)','MB24.0 grave, MB24.1 (pánico), MB24.3 (fobia)'],
+        ['DSM-5','— (boldness no es dx)','—','—','GAD leve, fobia','GAD severo, Panic disorder, PTSD'],
+        ['RDoC','— (no captura)','—','—','Potential Threat [T], Acute Threat [F]','Potential + Acute Threat'],
+        ['HiTOP','—','—','—','Anxious worry, Panic/somatic anxiety','Anxious worry severo, Panic severo']
+      ]
+    },
+    guide:['¿Hay algo que le preocupe o le dé miedo últimamente?','¿Ha tenido episodios de miedo intenso o ataques de pánico?','¿Alguna vez le dicen que es arriesgado o que no mide las consecuencias?'],
     specifiers:[
-      {id:'amenaza_type',type:'radio',label:'Tipo',options:['[T] Tónico','[F] Fásico'],showWhen:'!=0'}
+      {id:'amenaza_type',type:'radio',label:'Tipo temporal',options:['[T] Tónico (worry crónico)','[F] Fásico (pánico, startle)','[T+F] Ambos'],showWhen:'!=0'}
     ]
   },
   {
     id:'F6.frustración', code:'F6', title:'Frustración', type:'bipolar',
-    scores:{'-2':'Explosivo','-1':'Umbral bajo','0':'Proporcional','+1':'Supresión parcial','+2':'Supresión rígida'},
-    guide:['&iquest;Se enoja fácilmente?','&iquest;Le cuesta expresar frustración?']
+    scores:{'-2':'Helplessness / RPE silente','-1':'Resignación prematura','0':'Frustración calibrada','+1':'Irritación sostenida','+2':'Explosión / intolerancia total'},
+    details:{
+      '-2':{nivel:'Helplessness / RPE silente',loQueVes:'Flat ante temas de pérdida significativa. No registra facial ni verbal. Familia confirma "ya no le importa nada".',loQueDice:'"No me importa." "Me da lo mismo." Sin afecto. O no identifica que hubo pérdida.',contra:'Alarma clínica: ¿está deprimido? ¿disociado? ¿hay riesgo?',clasica:'AMDP: 10 (apatía), 45 (abulia). ICD-11: MB24.0 (aplanamiento). Fish: Apatía, Abulia. DSM-5: MDD, SZ avolición.'},
+      '-1':{nivel:'Resignación prematura',loQueVes:'Dice "está bien" demasiado rápido. No profundiza en temas de pérdida. Compliance excesiva.',loQueDice:'"Da igual." "Para qué pelear." "Así es la vida." Con tono de derrota.',contra:'Preocupación, sensación de que "algo no cuadra" — ¿por qué no reacciona?',clasica:''},
+      '0':{nivel:'Frustración calibrada',loQueVes:'Reacción proporcional a frustración. Puede hablar de lo que le frustra con perspectiva.',loQueDice:'"Me frustró pero busqué otra forma." "Me molestó y hablé con..."',contra:'Entrevista fluida.',clasica:''},
+      '+1':{nivel:'Irritación sostenida sin resolución',loQueVes:'Tono cortante, suspiros, quejas repetidas en entrevista. Reporta irritabilidad en casa/trabajo.',loQueDice:'"Me molesta todo." "Estoy harto." "Nada sale como quiero." Quejas repetidas.',contra:'Frustración del clínico, sensación de "nada lo satisface".',clasica:'AMDP: 68 (irritabilidad). ICD-11: MB24.1 (ira leve). DSM-5: ODD. HiTOP: Irritabilidad.'},
+      '+2':{nivel:'Explosión / intolerancia total',loQueVes:'Explosión ante pregunta difícil, golpe, grito, insulto, levantarse. O reporte de estallidos recientes.',loQueDice:'"Me saco de quicio." "No aguanto que..." "Exploté porque..." "No es justo."',contra:'Miedo, irritación, impulso de controlar o terminar la entrevista.',clasica:'AMDP: 68 (irritabilidad severa), 94 (agresividad). ICD-11: MB24.1 (ira), MB23.0 (agresión). DSM-5: DMDD, TLP, TEI. Fish: Comportamiento agresivo, Explosividad.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','10 (apatía), 45 (abulia)','—','—','68 (irritabilidad)','68 severa, 94 (agresividad)'],
+        ['ICD-11','MB24.0 (aplanamiento), MB23.8 (apatía)','—','—','MB24.1 (ira leve)','MB24.1 (ira), MB23.0 (agresión)'],
+        ['DSM-5','MDD, SZ avolición','—','—','ODD (irritable)','DMDD, TLP, TEI'],
+        ['RDoC NVS','Loss: RPE silente','Frustrative Nonreward: atenuada','—','FNR: elevada','FNR: exagerada'],
+        ['Fish (2019)','Apatía, Abulia, Aplanamiento','—','—','Irritabilidad','Agresividad, Explosividad']
+      ]
+    },
+    guide:['¿Qué pasó la última vez que algo no salió como esperaba?','¿Se enoja fácilmente?','¿Le dicen que es explosivo o que todo le da igual?']
   },
   {
     id:'F6.autoevaluación', code:'F6', title:'Autoevaluación', type:'bipolar',
-    scores:{'-2':'Worthlessness','-1':'Baja autoestima','0':'Proporcional','+1':'Autoestima inflada','+2':'Grandiosidad'},
-    guide:['&iquest;Cómo se ve a sí mismo?','&iquest;Se siente especial o superior?']
+    scores:{'-2':'Worthlessness / culpa nuclear','-1':'Autoevaluación negativa','0':'Realista','+1':'Autoestima elevada','+2':'Grandiosidad afectiva'},
+    details:{
+      '-2':{nivel:'Worthlessness / culpa nuclear',loQueVes:'Sostenido, permea toda autoevaluación. Puede incluir delirio de culpa.',loQueDice:'"No merezco vivir." "Todo es mi culpa." "Soy defectuoso como persona."',contra:'',clasica:'AMDP: 42 (delirios culpa), 73 (culpa grave). ICD-11: MB24.B (culpa). DSM-5: MDD A7 (worthlessness/guilt). Forbes: Autodenigración, "ser carga".'},
+      '-1':{nivel:'Autoevaluación negativa',loQueVes:'Autocrítica excesiva sostenida pero no nuclear.',loQueDice:'"No soy suficiente." "Soy una carga."',contra:'',clasica:'AMDP: 71 (insuficiencia).'},
+      '0':{nivel:'Realista',loQueVes:'Autoevaluación flexible, proporcional a evidencia. Reconoce fortalezas y limitaciones.',loQueDice:'',contra:'',clasica:''},
+      '+1':{nivel:'Autoestima elevada',loQueVes:'Autoconfianza por encima de evidencia. Funcional si no interfiere.',loQueDice:'"Soy muy capaz." "Soy especial."',contra:'',clasica:'AMDP: 72 (autoestima↑ leve).'},
+      '+2':{nivel:'Grandiosidad afectiva',loQueVes:'Grandiosidad afectiva sin necesariamente delirio de grandeza.',loQueDice:'"Soy superior." "Soy invulnerable." "Merezco trato especial."',contra:'',clasica:'AMDP: 45 (delirios grandeza), 72 (autoestima↑ grave). ICD-11: MB26.2 (grandiosidad). DSM-5: BD-I B1. Forbes: Grandiosidad y derecho.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','42 (delirios culpa), 73 (culpa grave)','71 (insuficiencia)','—','72 (autoestima↑ leve)','45 (delirios grandeza), 72 grave'],
+        ['ICD-11','MB24.B (culpa), MB26.02 (delusión culpa)','—','—','—','MB26.2 (grandiosidad)'],
+        ['DSM-5','MDD A7 (worthlessness/guilt)','—','—','—','BD-I B1 (grandiosity)'],
+        ['HiTOP','Vergüenza/Culpa, Distress','—','Bienestar','—','Grandiosidad'],
+        ['Forbes (2024)','Autodenigración, "ser carga"','—','—','—','Grandiosidad y derecho']
+      ]
+    },
+    guide:['¿Cómo se ve a sí mismo?','¿Se siente una carga para otros?','¿Se siente especial o superior?'],
+    specifiers:[
+      {id:'autoeval_neg',type:'radio',label:'Tipo (polo −)',options:['[worthlessness]','[culpa]','[vergüenza]','[carga]'],showWhen:'<0'},
+      {id:'autoeval_pos',type:'radio',label:'Tipo (polo +)',options:['[inflada]','[grandiosa]','[invulnerable]'],showWhen:'>0'}
+    ]
   },
   {
     id:'F6.desesperanza', code:'F6', title:'Desesperanza', type:'bipolar',
-    scores:{'-2':'Futuro negro (negativo activo)','-1':'Futuro vacío','0':'Proporcional','+1':'Optimismo irreal','+2':'Invulnerabilidad'},
-    guide:['&iquest;Cómo ve el futuro?','&iquest;Piensa que las cosas van a mejorar?'],
+    scores:{'-2':'Futuro positivo inaccesible','-1':'Horizonte recortado','0':'Calibrado','+1':'Sesgo optimista','+2':'Prospección grandiosa'},
+    details:{
+      '-2':{nivel:'Futuro positivo inaccesible',loQueVes:'Discurso sin verbos en futuro. Ante "¿dónde se ve en 1 año?" → vacío o "no sé".',loQueDice:'"Nada va a mejorar." O silencio. O "da igual." O "muerto".',contra:'ALARMA: no hay futuro → evaluar suicidio. ⚠️ SUICIDIO: evaluar plan, medio, intención, letalidad.',clasica:'AMDP: 64 (desesperanza grave), 95 (conducta suicida). ICD-11: MB22.3 (hopelessness), MB26.A (ideación suicida). DSM-5: MDD severa, PTSD D4.'},
+      '-1':{nivel:'Horizonte recortado',loQueVes:'No menciona futuro espontáneamente. Evita preguntas prospectivas.',loQueDice:'"Dudo que [X] mejore." "¿Para qué?" Futuro representable pero oscurecido.',contra:'Preocupación: el mundo del paciente se achica.',clasica:'AMDP: 64 (desesperanza leve). ICD-11: MB28.D (pesimismo).'},
+      '0':{nivel:'Calibrado',loQueVes:'Menciona futuro espontáneamente. Planes proporcionales.',loQueDice:'"Hay cosas que pueden salir bien y otras no." Proporcional.',contra:'Cómoda.',clasica:''},
+      '+1':{nivel:'Sesgo optimista',loQueVes:'Optimismo que no incorpora evidencia adversa.',loQueDice:'"Las cosas van a mejorar, seguro." Minimiza riesgos reales.',contra:'Comodidad con reserva.',clasica:''},
+      '+2':{nivel:'Prospección grandiosa',loQueVes:'Habla de futuro constantemente. Planes irreales. Energía prospectiva sin freno.',loQueDice:'"Todo va a salir increíble." "Tengo un destino." Planes desconectados de capacidad.',contra:'"Está en otro planeta" — el futuro que describe no es posible.',clasica:'AMDP: 72 (autoestima↑), 45 (delirios grandiosos). ICD-11: MB26.2 (grandiosidad). DSM-5: BD manía.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','64 (desesperanza grave), 95 (conducta suicida)','64 leve','—','—','72 (autoestima↑), 45 (delirios grandiosos)'],
+        ['ICD-11','MB22.3 (hopelessness), MB26.A (ideación suicida)','MB28.D (pesimismo)','—','—','MB26.2 (grandiosidad)'],
+        ['DSM-5','MDD severa, PTSD D4 (foreshortened future)','MDD, distimia','—','—','BD manía'],
+        ['RDoC','NVS — Loss / Sustained Threat','NVS — Loss incipiente','—','PVS elevado','PVS excesivo — Approach sin freno']
+      ]
+    },
+    guide:['¿Cómo ve su futuro?','FFT clínico: "Dígame 3 cosas buenas que podrían pasarle esta semana."','Si ≤ −1: "¿Y 3 cosas malas que podrían pasar?" (distingue [V] vs [N]).'],
     specifiers:[
-      {id:'deseperanza_type',type:'radio',label:'Polo negativo',options:['[V] Vacío','[N] Negativo activo'],showWhen:'<0'}
+      {id:'desesperanza_type',type:'radio',label:'Tipo de colapso (polo −)',options:['[V] Vacío prospectivo (no genera ni positivos ni negativos)','[N] Negativo activo (genera negativos con detalle)'],showWhen:'<0'}
     ]
   },
   {
     id:'F7.testing', code:'F7', title:'Testing de realidad', type:'bipolar',
-    scores:{'-2':'Realidad rechazada','-1':'Realidad cuestionada','0':'Proporcional','+1':'Hiperreal','+2':'Realidad impuesta'},
-    guide:['&iquest;Ha tenido experiencias que otros no comparten?','&iquest;Escucha o ve cosas?']
+    scores:{'-2':'Quiebre con consenso','-1':'Distorsiones leves','0':'Preservado','+1':'Sobre-monitoreo / duda perceptiva','+2':'Hipervigilancia / incompletitud'},
+    details:{
+      '-2':{nivel:'Quiebre con consenso',loQueVes:'Certeza delirante, alucinaciones como reales, confabulación sin corrección.',loQueDice:'Contenido delirante con convicción total. O reporta percepciones que otros no comparten.',contra:'',clasica:'AMDP: 33-52 (delirios, alucinaciones). ICD-11: MB26.0 (delusiones), MB27.2 (alucinaciones). Fish: Delirio, Alucinación, Confabulación.'},
+      '-1':{nivel:'Distorsiones leves',loQueVes:'Ideas sobrevaloradas, ilusiones aceptadas, pseudoalucinaciones con insight parcial.',loQueDice:'Reconoce parcialmente que puede estar equivocado.',contra:'',clasica:'AMDP: 47 (ilusiones), ZP10 (ideas sobrevaloradas). ICD-11: MB26.6, MB27.0-1 (despersonalización/desrealización). Fish: Pseudoalucinación, Ilusión, Idea sobrevalorada.'},
+      '0':{nivel:'Preservado',loQueVes:'Discrimina interno/externo, confianza proporcional, corrige errores.',loQueDice:'',contra:'',clasica:''},
+      '+1':{nivel:'Sobre-monitoreo / duda perceptiva',loQueVes:'Duda percepciones, necesita confirmación, checking ocasional, suspicacia epistémica.',loQueDice:'"¿Eso realmente pasó?" "Necesito verificar."',contra:'',clasica:'AMDP: 27 (suspicacia), 30-31 (obsesiones-compulsiones checking). ICD-11: MB26.9 (suspicacia). Fish: Obsesión, Compulsión.'},
+      '+2':{nivel:'Hipervigilancia / incompletitud',loQueVes:'Nada confirma percepción, checking compulsivo, sensación de incompletitud sensorial, parálisis decisional.',loQueDice:'"Algo no está bien pero no sé qué." "Necesito verificar una y otra vez."',contra:'',clasica:'AMDP: 30-31 (obsesiones just-right). ICD-11: MB25.0-1 (severo). Eguíluz: — . NJRE elevado.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','33-52 (delirios, alucinaciones)','47 (ilusiones), ZP10 (sobrevaloradas)','—','27 (suspicacia), 30-31 (checking)','30-31 (just-right)'],
+        ['ICD-11','MB26.0 (delusiones), MB27.2 (alucinaciones)','MB26.6, MB27.0-1 (dp/dr)','—','MB26.9, MB25.0-1 (obsesiones)','MB26.7-8, MB25 (severo)'],
+        ['Fish (2019)','Delirio, Alucinación, Confabulación','Pseudoalucinación, Ilusión, Idea sobrevalorada','—','Obsesión, Compulsión','Obsesión severa'],
+        ['HiTOP','Distorsión realidad, Delirios, Alucinaciones','Excentricidad, Fantasía','—','Mistrust, Doubt','Suspicacia, Perfeccionismo patológico']
+      ]
+    },
+    guide:['¿Ha tenido experiencias que otros no comparten?','¿Escucha o ve cosas que otros no?','¿Siente que necesita verificar las cosas repetidamente?','¿Siente que algo no está bien pero no puede identificar qué?']
   },
   {
     id:'F7.auto-mentalización', code:'F7', title:'Auto-mentalización', type:'bipolar',
-    scores:{'-2':'Sin acceso a estados internos','-1':'Acceso reducido','0':'Proporcional','+1':'Sobre-mentalización','+2':'Hiper-reflexivo'},
-    guide:['&iquest;Puede identificar qué siente?','&iquest;Le da muchas vueltas a por qué se siente así?']
+    scores:{'-2':'Self disuelto / fusionado','-1':'Self difuso / concreto','0':'Self calibrado','+1':'Self dudoso / sobre-reflexión','+2':'Self sobredeterminado / pseudo-insight'},
+    details:{
+      '-2':{nivel:'Self disuelto / fusionado',loQueVes:'No tiene distancia representacional. Lo que siente ES la realidad.',loQueDice:'"No sé quién soy. Mis pensamientos no son míos. Soy esto (hecho, no pensamiento)."',contra:'',clasica:'AMDP: 55-58 (difusión, robo, inserción pensamiento). ICD-11: MB26.01, MB26.1, MB26.4. Fish: Despersonalización, Fenómenos de pasividad, Alienación del pensamiento.'},
+      '-1':{nivel:'Self difuso / concreto',loQueVes:'Solo se conoce por resultados, no por reflexión.',loQueDice:'"No tengo claro qué quiero, qué siento, qué me importa. Solo me conozco por resultados."',contra:'',clasica:'AMDP: 54 (despersonalización leve). ICD-11: MB27.0 (despersonalización). Fish: Despersonalización, Desrealización.'},
+      '0':{nivel:'Self calibrado',loQueVes:'Sabe quién es, qué siente, por qué actúa — y acepta que a veces no sé.',loQueDice:'"Sé quién soy, qué siento, por qué actúo — y acepto que a veces no sé."',contra:'',clasica:''},
+      '+1':{nivel:'Self dudoso / sobre-reflexión',loQueVes:'Reflexiona pero no puede parar. Duda productiva volviéndose improductiva.',loQueDice:'"Sé quién soy pero no puedo parar de cuestionarlo. ¿Realmente siento esto?"',contra:'',clasica:'AMDP: 20 (rumiación leve). ICD-11: MB24.E (rumiación mental). HiTOP: Hiperdeliberación.'},
+      '+2':{nivel:'Self sobredeterminado / pseudo-insight',loQueVes:'Parece sofisticado pero no mueve nada. Habla de emociones sin sentirlas.',loQueDice:'"Sé exactamente quién soy, por qué soy así, y por qué siento lo que siento — sin evidencia, sin apertura."',contra:'',clasica:'AMDP: 20 (rumiación grave). ICD-11: MB24.E (rumiación severa).'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','55-58 (difusión, robo, inserción pensamiento), 54 (despersonalización)','54 leve','—','20 (rumiación leve)','20 grave, 30 (obsesiones self-directed)'],
+        ['ICD-11','MB26.01, MB26.1, MB26.10-12, MB26.4','MB27.0 (despersonalización)','—','MB24.E (rumiación)','MB24.E severa'],
+        ['Fish (2019)','Despersonalización, Pasividad, Alienación, Inserción, Sustracción','Despersonalización, Desrealización','—','Obsesión (rumiativa)','Obsesión severa'],
+        ['Vallejo (2025)','Despersonalización, Personalidad múltiple, Disociación','Despersonalización','—','Obsesión','Obsesión severa']
+      ]
+    },
+    guide:['¿Puede identificar qué siente en este momento?','¿Le da muchas vueltas a por qué se siente así?','¿Siente que sus pensamientos son suyos?']
   },
   {
     id:'F7.mentalización-otro', code:'F7', title:'Mentalización del otro', type:'bipolar',
-    scores:{'-2':'No mentaliza al otro','-1':'Mentalización reducida','0':'Proporcional','+1':'Sobre-atribución','+2':'Hipermentalización paranoide'},
-    guide:['&iquest;Entiende lo que otros sienten?','&iquest;Siente que otros tienen intenciones ocultas?']
+    scores:{'-2':'Opacidad total','-1':'Lectura parcial / literal','0':'Calibrado','+1':'Sobre-lectura leve','+2':'Hypermentalizing'},
+    details:{
+      '-2':{nivel:'Opacidad total',loQueVes:'El otro es inaccesible mentalmente. No infiere qué piensa/siente/quiere.',loQueDice:'No puede describir estados mentales de otros.',contra:'',clasica:'AMDP: 92 (aislamiento social). ICD-11: MB23.Q (retraimiento social). Fish: Aplanamiento afectivo, Embotamiento (componente social). HiTOP: Distanciamiento social.'},
+      '-1':{nivel:'Lectura parcial / literal',loQueVes:'Infiere emociones básicas pero no intenciones, sarcasmo, faux pas. Literal, concreto.',loQueDice:'Interpreta todo de manera literal.',contra:'',clasica:'AMDP: 92 leve.'},
+      '0':{nivel:'Calibrado',loQueVes:'Infiere estados mentales del otro con precisión proporcional a la evidencia social.',loQueDice:'Describe motivaciones de otros con matiz y proporción.',contra:'',clasica:''},
+      '+1':{nivel:'Sobre-lectura leve',loQueVes:'Tiende a atribuir intenciones/emociones al otro más allá de lo observable. Suspicacia, hiperatribución.',loQueDice:'"Yo sé lo que realmente quería." Interpreta más allá de señales.',contra:'',clasica:'AMDP: 27 (suspicacia). ICD-11: MB26.9 (suspicacia). HiTOP: Mistrust, Suspicacia.'},
+      '+2':{nivel:'Hypermentalizing',loQueVes:'Certeza sobre lo que el otro piensa/siente sin evidencia. Sobreatribuye motivos complejos.',loQueDice:'"Sé exactamente por qué hizo eso." Inventa lectura con total confianza.',contra:'',clasica:'AMDP: 27 grave, 39-41 (delirios referencia, persecución, celos). ICD-11: MB26.7 (ideación paranoide), MB26.8 (referencia). Fish: Delirio, Capgras, Fregoli, Othello.'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','92 (aislamiento social)','92 leve','—','27 (suspicacia)','27 grave, 39-41 (delirios referencia, persecución, celos)'],
+        ['ICD-11','MB23.Q (retraimiento social)','MB23.Q leve','—','MB26.9 (suspicacia)','MB26.7 (paranoia), MB26.8 (referencia)'],
+        ['Fish (2019)','Aplanamiento afectivo (social)','—','—','—','Delirio, Capgras, Fregoli, Othello, Clérambault'],
+        ['HiTOP','Distanciamiento social','—','—','Mistrust, Suspicacia','Suspicacia, Hipervigilancia']
+      ]
+    },
+    guide:['¿Entiende lo que otros sienten?','¿Siente que otros tienen intenciones ocultas?','¿Le cuesta saber si alguien está siendo sarcástico o en serio?']
   },
   {
     id:'G.arousal', code:'G', title:'Arousal', type:'bipolar',
-    scores:{'-2':'Disociación/shutdown','-1':'Hipoarousal','0':'Proporcional','+1':'Hiperarousal leve','+2':'Hiperarousal severo'},
-    guide:['Observe signos autonómicos: FC, sudoración, tensión muscular, estado de alerta.']
+    scores:{'-2':'Hypoarousal / disociación','-1':'Activación reducida','0':'Proporcional','+1':'Activación elevada','+2':'Hyperarousal sostenido'},
+    details:{
+      '-2':{nivel:'Hypoarousal / disociación',loQueVes:'Shutdown: respuesta lenta/ausente, numbing, ojos vacíos, voz monótona, latencia >5s sostenida. Conciencia PRESERVADA (≠ obnubilación).',loQueDice:'"No estoy aquí." O respuestas mínimas.',contra:'',clasica:'AMDP: 1 (vigilancia↓), 80 (falta impulso). ICD-11: MB20.0 (estupor). DSM-5: PTSD dissociative subtype. Fish: Estupor, Acinesia.'},
+      '-1':{nivel:'Activación reducida',loQueVes:'Somnolencia, latencia ocasional, monotonía, energía baja. Responde a estímulo directo.',loQueDice:'"Estoy cansado." "No tengo energía."',contra:'',clasica:'AMDP: 105 (cansancio). ICD-11: MB22.7 (fatiga). Reischies: ch04 (fatiga intensificada).'},
+      '0':{nivel:'Proporcional',loQueVes:'Alerta proporcional al contexto, sostenido, respuesta en timing adecuado.',loQueDice:'',contra:'',clasica:''},
+      '+1':{nivel:'Activación elevada',loQueVes:'Energía aumentada, habla acelerada, inquietud, pero regula con consigna.',loQueDice:'"No puedo estar quieto." "Estoy acelerado."',contra:'',clasica:'AMDP: 82 (impulso↑).'},
+      '+2':{nivel:'Hyperarousal sostenido',loQueVes:'Imposible sentarse >2 min, taquilalia, hipervigilancia, startle, sobreestimulación. Interfiere con entrevista.',loQueDice:'"No puedo parar." Signos autonómicos: taquicardia, sudoración, midriasis.',contra:'',clasica:'AMDP: 83 (agitación motora). ICD-11: MB23.M (agitación psicomotora). DSM-5: PTSD criterion E. Fish: Excitación psicomotora. Reischies: ch04 (hipervigilancia).'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','1 (vigilancia↓), 80 (falta impulso)','105 (cansancio)','—','82 (impulso↑)','83 (agitación motora)'],
+        ['ICD-11','MB20.0 (estupor)','MB22.7 (fatiga)','—','—','MB23.M (agitación psicomotora)'],
+        ['DSM-5','PTSD dissociative subtype','—','—','—','PTSD criterion E (hyperarousal)'],
+        ['RDoC','Arousal (hypo end)','—','—','—','Arousal (hyper end)'],
+        ['Fish (2019)','Estupor, Acinesia','—','—','—','Excitación psicomotora']
+      ]
+    },
+    guide:['Observe signos autonómicos: FC, sudoración, tensión muscular, estado de alerta.','Distinción crítica: G.arousal −2 (conciencia preservada) vs NC −2 (conciencia reducida).'],
+    specifiers:[
+      {id:'arousal_neg',type:'radio',label:'Tipo hypoarousal',options:['[disociativo]','[depresivo]','[catatónico]','[médico]'],showWhen:'<0'},
+      {id:'arousal_pos',type:'radio',label:'Tipo hyperarousal',options:['[ansioso]','[maníaco]','[agitado]','[intoxicación]'],showWhen:'>0'},
+      {id:'arousal_temp',type:'radio',label:'Temporal',options:['[alternante]','[sostenido]','[reactivo]'],showWhen:'!=0'}
+    ]
   },
   {
     id:'G.coherencia', code:'G', title:'Coherencia global', type:'bipolar',
-    scores:{'-2':'Desorganización franca','-1':'Desorganización parcial','0':'Proporcional','+1':'Sobre-estructuración','+2':'Rigidez organizativa'},
-    guide:['Observe coherencia del discurso, conducta dirigida a metas, congruencia afecto-contenido.']
+    scores:{'-2':'Fragmentación severa','-1':'Fragmentación leve','0':'Coherente','+1':'Hiper-organizado','+2':'Sobreestructuración rígida'},
+    details:{
+      '-2':{nivel:'Fragmentación severa',loQueVes:'Incoherencia, descarrilamiento, conducta bizarra, afecto incongruente. No se puede seguir la narrativa ni predecir la conducta.',loQueDice:'Discurso incoherente, neologismos, word salad.',contra:'',clasica:'AMDP: 24 (incoherencia), 25 (bloqueo discursivo), ZP1 (neologismos). ICD-11: MB23.H (incoherent speech), MB23.6 (disorganized behaviour). DSM-5: A.3 y A.4. Fish: Esquizofasia, Descarrilamiento.'},
+      '-1':{nivel:'Fragmentación leve',loQueVes:'Tangencialidad recuperable, conducta ocasionalmente inapropiada, afecto parcialmente incongruente. Con estructura externa se reorganiza.',loQueDice:'Pierde el hilo pero puede volver con ayuda.',contra:'',clasica:'AMDP: 19 (perseveración), 26 (circunstancialidad). ICD-11: MB21.9 (perseveración). Fish: Circunstancialidad, Vorbeireden.'},
+      '0':{nivel:'Coherente',loQueVes:'Narrativa coherente, hilo sostenido, pensamiento-conducta-afecto alineados y proporcionales al contexto.',loQueDice:'Discurso organizado y comprensible.',contra:'',clasica:''},
+      '+1':{nivel:'Hiper-organizado',loQueVes:'Narrativa estructurada al milímetro, concretismo, baja tolerancia a ambigüedad. Circunstancial por exceso de detalle.',loQueDice:'Respuestas excesivamente detalladas. No puede resumir.',contra:'',clasica:'AMDP: 26 (circunstancialidad), 18 (restringido). Fish: Perseveración, Concretismo.'},
+      '+2':{nivel:'Sobreestructuración rígida',loQueVes:'Sigue guion mental, no responde a redirección. Conducta ritualizada. Afecto restringido pero congruente. No tolera desviación.',loQueDice:'Respuestas como "script". No acepta cambio de tema.',contra:'',clasica:'AMDP: 19 (perseveración), 18 (restringido). ICD-11: MB21.9 (perseveración severa).'}
+    },
+    frameworks:{
+      headers:['','−2','−1','0','+1','+2'],
+      rows:[
+        ['AMDP 9e','24 (incoherencia), 25 (bloqueo), ZP1 (neologismos)','19 (perseveración), 26 (circunstancialidad)','—','26, 18 (restringido)','19 (perseveración), 18'],
+        ['ICD-11','MB23.H (incoherent speech), MB23.6','MB21.9 (perseveración)','—','MB25.00 (circunstancialidad)','MB21.9 severa'],
+        ['DSM-5','A.3 (disorganized speech), A.4 (behavior)','—','—','—','—'],
+        ['Fish (2019)','Esquizofasia, Descarrilamiento, TFP','Circunstancialidad, Vorbeireden','—','Perseveración, Concretismo','Perseveración'],
+        ['HiTOP','Thought Disorder: Disorganization','—','—','—','Detachment / Restricted']
+      ]
+    },
+    guide:['Observe coherencia del discurso, conducta dirigida a metas, congruencia afecto-contenido.','¿Se puede seguir la narrativa? ¿La conducta es predecible?','¿El discurso es excesivamente detallado o rígido?'],
+    specifiers:[
+      {id:'canal_P',type:'checkbox',label:'[P] Pensamiento desorganizado/rígido'},
+      {id:'canal_C',type:'checkbox',label:'[C] Conducta desorganizada/ritualizada'},
+      {id:'canal_A',type:'checkbox',label:'[A] Afecto incongruente/restringido'}
+    ]
   },
   {
     id:'P', code:'P', title:'Estado interpersonal', type:'two_axis',
     axes:[
-      {id:'P1.dominancia',label:'P1 Dominancia',scores:{'-2':'Sumiso','0':'Equilibrado','+2':'Dominante'}},
-      {id:'P2.afiliación',label:'P2 Afiliación',scores:{'-2':'Hostil','0':'Equilibrado','+2':'Afiliativo'}}
+      {id:'P1.dominancia',label:'P1 Dominancia–Sumisión',scores:{'-2':'Sumisión extrema','0':'Rapport simétrico','+2':'Dominancia franca'}},
+      {id:'P2.afiliación',label:'P2 Afiliación–Hostilidad',scores:{'-2':'Hostilidad sostenida','0':'Calidez proporcional','+2':'Afiliación excesiva'}}
     ],
-    guide:['Observe la dinámica de la entrevista.','&iquest;Quién dirige? &iquest;Es cálido o frío?']
+    details_p1:{
+      '-2':{nivel:'Sumisión extrema',loQueVes:'No inicia, no opina, no decide. Acepta todo sin cuestionamiento. Monosílabos, mirada baja, postura encogida.',loQueDice:'Acuerdo automático. Espera que el otro dirija.',contra:'',clasica:'AMDP: 70 (quejumbrería). HiTOP: Sumisión. Fish: Estupor, Negativismo pasivo.'},
+      '-1':{nivel:'Complacencia / deferencia',loQueVes:'Tiende a ceder, busca aprobación, minimiza necesidades. Sonrisa apaciguadora.',loQueDice:'"¿Eso está bien?" Evita conflicto.',contra:'',clasica:''},
+      '0':{nivel:'Rapport simétrico',loQueVes:'Turno equilibrado. Puede proponer, aceptar, disentir. Ajusta su posición al contexto.',loQueDice:'',contra:'',clasica:''},
+      '+1':{nivel:'Conducción activa',loQueVes:'Dirige la interacción, establece agenda, interrumpe o redirige. Pero acepta input.',loQueDice:'Ofrece soluciones no pedidas.',contra:'',clasica:''},
+      '+2':{nivel:'Dominancia franca',loQueVes:'No negocia. Impone su marco, descalifica alternativas, controla ritmo y tema.',loQueDice:'"Usted no entiende." Demanda atención.',contra:'',clasica:'AMDP: 86 (histrionismo). ICD-11: MB28.3 (grandiosidad). HiTOP: Dominancia, Manipulación.'}
+    },
+    details_p2:{
+      '-2':{nivel:'Hostilidad sostenida',loQueVes:'Desprecio activo, suspicacia, agresión verbal o gestual. El otro es amenaza o enemigo.',loQueDice:'Sarcasmo, descalificación directa.',contra:'Alianza en riesgo. Contratransferencia: irritación, temor, rechazo.',clasica:'AMDP: 94 (agresividad), 68 (irritabilidad). ICD-11: MB23.0 (agresión). Fish: Comportamiento agresivo, Suspicacia.'},
+      '-1':{nivel:'Frialdad / distancia',loQueVes:'Cortés pero desconectado. No hostil, sino indiferente. Mantiene distancia emocional deliberada.',loQueDice:'Respuestas breves. Tono plano. No pregunta.',contra:'Alianza superficial. Contratransferencia: aburrimiento, distancia.',clasica:''},
+      '0':{nivel:'Calidez proporcional',loQueVes:'Conectado proporcionalmente. Responde al afecto del clínico.',loQueDice:'',contra:'Alianza funcional.',clasica:''},
+      '+1':{nivel:'Calidez elevada',loQueVes:'Busca conexión activamente. Comparte más de lo esperado, se interesa por el clínico.',loQueDice:'Preguntas personales al clínico. Comparte datos íntimos rápido.',contra:'Alianza positiva pero con riesgo de sobreinvolucramiento.',clasica:''},
+      '+2':{nivel:'Afiliación excesiva',loQueVes:'Fusional: no tolera distancia. Idealiza al clínico, busca relación especial, pánico ante separación.',loQueDice:'"Usted es el único que me entiende." Toca al clínico. Llora al separarse.',contra:'Alianza pseudopositiva. Riesgo de dependencia iatrogénica.',clasica:'AMDP: 93 (contacto social excesivo). ICD-11: MB23.C (sociabilidad↑).'}
+    },
+    frameworks:{
+      headers:['','P1 −2 (sumiso)','P1 +2 (dominante)','P2 −2 (hostil)','P2 +2 (afiliativo excesivo)'],
+      rows:[
+        ['AMDP 9e','70 (quejumbrería)','86 (histrionismo)','94 (agresividad), 68 (irritabilidad)','93 (contacto social excesivo)'],
+        ['ICD-11','MB28.H (sumisión)','MB28.3 (grandiosidad)','MB23.0 (agresión), MB26.9 (suspicacia)','MB23.C (sociabilidad↑)'],
+        ['DSM-5 AMPD','Sumisión (Detachment)','Grandiosity, Manipulativeness','Hostility, Callousness','Separation insecurity'],
+        ['Fish (2019)','Estupor, Negativismo pasivo','Autoestima↑, Histrionismo','Agresividad, Suspicacia','—'],
+        ['HiTOP','Sumisión','Dominancia, Manipulación','Hostilidad iracunda','—']
+      ]
+    },
+    guide:['Observe la dinámica de la entrevista: ¿quién dirige?','¿Es cálido o frío? ¿Hostil o afiliativo?','¿Cambia la posición durante la entrevista? (spin)'],
+    specifiers:[
+      {id:'spin',type:'radio',label:'P3 Estabilidad (Spin)',options:['Estable','Oscilante'],showWhen:'always'}
+    ]
   }
 ];
 
@@ -736,6 +836,7 @@ function defaultState() {
   DIMS.forEach(d => {
     if (d.type === 'two_axis') {
       d.axes.forEach(a => { s[a.id] = {score: null}; });
+      s[d.id] = {score:null, specifiers:{}};
     } else {
       s[d.id] = {score: null, specifiers: {}};
     }
@@ -745,14 +846,14 @@ function defaultState() {
 }
 function loadState() {
   try {
-    const saved = localStorage.getItem('bmse_state');
+    const saved = localStorage.getItem('bmse_state_v2');
     if (saved) return JSON.parse(saved);
   } catch(e) {}
   return defaultState();
 }
 function saveState() {
   state._timerStart = timerStart;
-  localStorage.setItem('bmse_state', JSON.stringify(state));
+  localStorage.setItem('bmse_state_v2', JSON.stringify(state));
 }
 
 // ── RENDER SIDEBAR ──
@@ -773,9 +874,7 @@ function renderSidebar() {
 }
 
 function isDimScored(d, i) {
-  if (d.type === 'two_axis') {
-    return d.axes.every(a => state[a.id] && state[a.id].score !== null);
-  }
+  if (d.type === 'two_axis') return d.axes.every(a => state[a.id] && state[a.id].score !== null);
   return state[d.id] && state[d.id].score !== null;
 }
 
@@ -791,10 +890,7 @@ function getDimScoreDisplay(d) {
   return fmtScore(s);
 }
 
-function fmtScore(v) {
-  v = parseInt(v);
-  return v > 0 ? '+' + v : '' + v;
-}
+function fmtScore(v) { v = parseInt(v); return v > 0 ? '+' + v : '' + v; }
 
 function updateProgress() {
   let scored = 0;
@@ -819,20 +915,26 @@ function showDimension(idx) {
     <div class="dim-type">${typeLabel(d.type)}</div>
   </div>`;
 
-  // Guide
   if (d.guide) {
-    html += `<details class="guide-box" open><summary>Guía clínica</summary><div class="guide-content"><ul>`;
+    html += `<details class="guide-box" open><summary>Preguntas de evaluación</summary><div class="guide-content"><ul>`;
     d.guide.forEach(g => html += `<li>${g}</li>`);
     html += `</ul></div></details>`;
   }
 
-  // Score buttons
   if (d.type === 'two_axis') {
     html += renderTwoAxis(d);
+    html += `<div class="score-detail-card" id="scoreDetailP1"></div>`;
+    html += `<div class="score-detail-card" id="scoreDetailP2"></div>`;
+    if (d.specifiers) html += renderSpecifiers(d);
   } else {
     html += renderScoreButtons(d);
-    html += `<div class="score-desc" id="scoreDesc"></div>`;
+    html += `<div class="score-detail-card" id="scoreDetail"></div>`;
     if (d.specifiers) html += renderSpecifiers(d);
+  }
+
+  // Frameworks
+  if (d.frameworks) {
+    html += renderFrameworks(d);
   }
 
   // Nav buttons
@@ -846,7 +948,7 @@ function showDimension(idx) {
   html += `</div></div>`;
 
   container.innerHTML = html;
-  updateScoreDesc(d);
+  updateScoreDetail(d);
   updateSpecVisibility(d);
   updateGateWarning();
   renderSidebar();
@@ -855,7 +957,7 @@ function showDimension(idx) {
 }
 
 function typeLabel(t) {
-  const m = {bipolar:'Bipolar -2/+2', gate:'Gate (bipolar + especificadores)', profile:'Perfil unidireccional', unipolar_pos:'Unidireccional 0/+2', conviction:'Escala de convicción 0-4', two_axis:'Dos ejes'};
+  const m = {bipolar:'Bipolar −2/+2', gate:'Gate (bipolar + especificadores)', profile:'Perfil unidireccional 0/−2', unipolar_pos:'Unidireccional 0/+2', conviction:'Escala de convicción 0–4', two_axis:'Dos ejes (circumplejo)'};
   return m[t] || t;
 }
 
@@ -865,7 +967,8 @@ function renderScoreButtons(d) {
   let html = `<div class="score-group">`;
   keys.forEach(k => {
     const sel = cur !== null && String(cur) === String(k) ? 'selected' : '';
-    html += `<button class="score-btn ${sel}" data-val="${k}" onclick="setScore('${d.id}','${k}',this)">${k}</button>`;
+    const label = d.scores[k];
+    html += `<button class="score-btn ${sel}" data-val="${k}" onclick="setScore('${d.id}','${k}',this)">${k}<span class="score-label">${label}</span></button>`;
   });
   html += `</div>`;
   return html;
@@ -873,15 +976,14 @@ function renderScoreButtons(d) {
 
 function renderTwoAxis(d) {
   let html = `<div class="two-axis-container">`;
-  d.axes.forEach(ax => {
-    const keys = Object.keys(ax.scores);
+  d.axes.forEach((ax,ai) => {
     const allKeys = ['-2','-1','0','+1','+2'];
     const cur = state[ax.id]?.score;
     html += `<div class="axis-group"><h4>${ax.label}</h4><div class="score-group">`;
     allKeys.forEach(k => {
       const sel = cur !== null && String(cur) === String(k) ? 'selected' : '';
-      const label = ax.scores[k] ? `<span style="font-size:10px;display:block">${ax.scores[k]}</span>` : '';
-      html += `<button class="score-btn ${sel}" data-val="${k}" onclick="setAxisScore('${ax.id}','${k}',this)">${k}${label}</button>`;
+      const label = ax.scores[k] || '';
+      html += `<button class="score-btn ${sel}" data-val="${k}" onclick="setAxisScore('${ax.id}','${k}',this,${ai})">${k}${label ? '<span class="score-label">'+label+'</span>' : ''}</button>`;
     });
     html += `</div></div>`;
   });
@@ -890,19 +992,22 @@ function renderTwoAxis(d) {
 }
 
 function renderSpecifiers(d) {
+  const dimId = d.type === 'two_axis' ? d.id : d.id;
+  if (!state[dimId]) state[dimId] = {score:null, specifiers:{}};
   let html = `<div class="specifiers"><h4>Especificadores</h4>`;
   d.specifiers.forEach(sp => {
-    const checked = state[d.id]?.specifiers?.[sp.id];
+    const checked = state[dimId]?.specifiers?.[sp.id];
     if (sp.type === 'checkbox') {
       const isChecked = checked ? 'checked' : '';
-      html += `<div class="spec-row"><label><input type="checkbox" ${isChecked} onchange="setSpec('${d.id}','${sp.id}',this.checked)"> ${sp.label}</label>`;
+      const showWhenAttr = sp.showWhen ? `data-showwhen="${sp.showWhen}"` : '';
+      html += `<div class="spec-row" ${showWhenAttr} id="specrow_${sp.id}"><label><input type="checkbox" ${isChecked} onchange="setSpec('${dimId}','${sp.id}',this.checked)"> ${sp.label}</label>`;
       if (sp.sub) {
-        const subVal = state[d.id]?.specifiers?.[sp.id + '_sub'] || '';
+        const subVal = state[dimId]?.specifiers?.[sp.id + '_sub'] || '';
         html += `<div class="spec-sub ${checked ? 'visible' : ''}" id="sub_${sp.id}">`;
         if (sp.sub.type === 'text') {
-          html += `<input type="text" value="${subVal}" placeholder="${sp.sub.placeholder || ''}" onchange="setSpec('${d.id}','${sp.id}_sub',this.value)">`;
+          html += `<input type="text" value="${subVal}" placeholder="${sp.sub.placeholder || ''}" onchange="setSpec('${dimId}','${sp.id}_sub',this.value)">`;
         } else if (sp.sub.type === 'select') {
-          html += `<select onchange="setSpec('${d.id}','${sp.id}_sub',this.value)"><option value="">--</option>`;
+          html += `<select onchange="setSpec('${dimId}','${sp.id}_sub',this.value)"><option value="">--</option>`;
           sp.sub.options.forEach(o => {
             html += `<option value="${o}" ${subVal===o?'selected':''}>${o}</option>`;
           });
@@ -915,10 +1020,11 @@ function renderSpecifiers(d) {
       }
       html += `</div>`;
     } else if (sp.type === 'radio') {
-      html += `<div class="spec-row" id="specrow_${sp.id}" style="display:none"><span style="font-size:13px;font-weight:600;margin-right:8px;">${sp.label}:</span>`;
+      const showStyle = sp.showWhen === 'always' ? '' : 'style="display:none"';
+      html += `<div class="spec-row" id="specrow_${sp.id}" ${showStyle}><span style="font-size:13px;font-weight:600;margin-right:8px;">${sp.label}:</span>`;
       sp.options.forEach(o => {
         const isChecked = checked === o ? 'checked' : '';
-        html += `<label><input type="radio" name="spec_${sp.id}" value="${o}" ${isChecked} onchange="setSpec('${d.id}','${sp.id}',this.value)"> ${o}</label>`;
+        html += `<label><input type="radio" name="spec_${sp.id}" value="${o}" ${isChecked} onchange="setSpec('${dimId}','${sp.id}',this.value)"> ${o}</label>`;
       });
       html += `</div>`;
     }
@@ -927,27 +1033,43 @@ function renderSpecifiers(d) {
   return html;
 }
 
+function renderFrameworks(d) {
+  const fw = d.frameworks;
+  let html = `<details class="frameworks-box"><summary>Psicopatología clásica (Frameworks)</summary><div class="fw-content"><table>`;
+  html += `<tr>`;
+  fw.headers.forEach(h => html += `<th>${h}</th>`);
+  html += `</tr>`;
+  fw.rows.forEach(row => {
+    html += `<tr>`;
+    row.forEach((cell,ci) => html += `<td${ci===0?' style="font-weight:600;white-space:nowrap"':''}>${cell}</td>`);
+    html += `</tr>`;
+  });
+  html += `</table></div></details>`;
+  return html;
+}
+
 // ── SCORE ACTIONS ──
 function setScore(dimId, val, btn) {
   if (!state[dimId]) state[dimId] = {score:null, specifiers:{}};
   state[dimId].score = val;
-  // Update buttons
   btn.parentElement.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   saveState();
   const d = DIMS.find(x => x.id === dimId);
-  updateScoreDesc(d);
+  updateScoreDetail(d);
   updateSpecVisibility(d);
   updateGateWarning();
   renderSidebar();
 }
 
-function setAxisScore(axId, val, btn) {
+function setAxisScore(axId, val, btn, axIdx) {
   if (!state[axId]) state[axId] = {score:null};
   state[axId].score = val;
   btn.parentElement.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   saveState();
+  const d = DIMS.find(x => x.type === 'two_axis');
+  updateScoreDetailP(d, axIdx, val);
   renderSidebar();
 }
 
@@ -956,21 +1078,44 @@ function setSpec(dimId, specId, val) {
   if (!state[dimId].specifiers) state[dimId].specifiers = {};
   state[dimId].specifiers[specId] = val;
   saveState();
-  const d = DIMS.find(x => x.id === dimId);
-  // Toggle sub-specifier visibility
   const subEl = document.getElementById('sub_' + specId);
-  if (subEl) {
-    subEl.classList.toggle('visible', !!val);
+  if (subEl) subEl.classList.toggle('visible', !!val);
+}
+
+function updateScoreDetail(d) {
+  if (!d || d.type === 'two_axis') return;
+  const el = document.getElementById('scoreDetail');
+  if (!el) return;
+  const score = state[d.id]?.score;
+  if (score !== null && score !== undefined && d.details && d.details[score]) {
+    const det = d.details[score];
+    el.setAttribute('data-active', score);
+    let html = `<h4>${det.nivel}</h4>`;
+    if (det.loQueVes) html += `<div class="detail-row"><div class="detail-label">Lo que ves</div><div class="detail-val">${det.loQueVes}</div></div>`;
+    if (det.loQueDice) html += `<div class="detail-row"><div class="detail-label">Lo que dice</div><div class="detail-val">${det.loQueDice}</div></div>`;
+    if (det.clasica) html += `<div class="detail-row"><div class="detail-label">Psicopatología clásica</div><div class="detail-val">${det.clasica}</div></div>`;
+    if (det.contra) html += `<div class="ct-row"><div class="ct-label">Contratransferencia</div>${det.contra}</div>`;
+    el.innerHTML = html;
+    el.classList.add('visible');
+  } else {
+    el.classList.remove('visible');
   }
 }
 
-function updateScoreDesc(d) {
-  if (!d || d.type === 'two_axis') return;
-  const el = document.getElementById('scoreDesc');
+function updateScoreDetailP(d, axIdx, val) {
+  const elId = axIdx === 0 ? 'scoreDetailP1' : 'scoreDetailP2';
+  const el = document.getElementById(elId);
   if (!el) return;
-  const score = state[d.id]?.score;
-  if (score !== null && score !== undefined && d.scores[score]) {
-    el.textContent = d.scores[score];
+  const detSource = axIdx === 0 ? d.details_p1 : d.details_p2;
+  if (detSource && detSource[val]) {
+    const det = detSource[val];
+    el.setAttribute('data-active', val);
+    let html = `<h4>${det.nivel}</h4>`;
+    if (det.loQueVes) html += `<div class="detail-row"><div class="detail-label">Lo que ves</div><div class="detail-val">${det.loQueVes}</div></div>`;
+    if (det.loQueDice) html += `<div class="detail-row"><div class="detail-label">Lo que dice / rapport</div><div class="detail-val">${det.loQueDice}</div></div>`;
+    if (det.clasica) html += `<div class="detail-row"><div class="detail-label">Psicopatología clásica</div><div class="detail-val">${det.clasica}</div></div>`;
+    if (det.contra) html += `<div class="ct-row"><div class="ct-label">Contratransferencia</div>${det.contra}</div>`;
+    el.innerHTML = html;
     el.classList.add('visible');
   } else {
     el.classList.remove('visible');
@@ -979,17 +1124,20 @@ function updateScoreDesc(d) {
 
 function updateSpecVisibility(d) {
   if (!d || !d.specifiers) return;
-  const score = state[d.id]?.score;
+  const dimId = d.type === 'two_axis' ? d.id : d.id;
+  const score = state[dimId]?.score;
   const numScore = score !== null ? parseInt(score) : null;
   d.specifiers.forEach(sp => {
-    if (sp.showWhen) {
+    if (sp.showWhen && sp.showWhen !== 'always') {
       const row = document.getElementById('specrow_' + sp.id);
       if (!row) return;
       let show = false;
       if (sp.showWhen === '>=1') show = numScore !== null && numScore >= 1;
       else if (sp.showWhen === '!=0') show = numScore !== null && numScore !== 0;
       else if (sp.showWhen === '<0') show = numScore !== null && numScore < 0;
+      else if (sp.showWhen === '>0') show = numScore !== null && numScore > 0;
       else if (sp.showWhen === '==4') show = numScore !== null && numScore === 4;
+      else if (sp.showWhen === '==+2') show = numScore !== null && numScore === 2;
       row.style.display = show ? 'flex' : 'none';
     }
   });
@@ -999,7 +1147,14 @@ function updateGateWarning() {
   const el = document.getElementById('gateWarning');
   const ncScore = state['NC.conciencia']?.score;
   if (ncScore !== null && ncScore !== undefined && String(ncScore) !== '0') {
-    el.textContent = `⚠️ Evaluar bajo conciencia alterada (NC = ${ncScore})`;
+    const specs = [];
+    const ncSpecs = state['NC.conciencia']?.specifiers || {};
+    if (ncSpecs['F']) specs.push('[F]');
+    if (ncSpecs['O:T']) specs.push('[O:T]');
+    if (ncSpecs['O:E']) specs.push('[O:E]');
+    if (ncSpecs['O:P']) specs.push('[O:P]');
+    const specStr = specs.length ? ' ' + specs.join(' ') : '';
+    el.innerHTML = `⚠️ Gate: Evaluar bajo conciencia alterada (NC = ${ncScore}${specStr}). Todos los scores son provisionales.`;
     el.style.display = 'block';
   } else {
     el.style.display = 'none';
@@ -1009,23 +1164,16 @@ function updateGateWarning() {
 // ── PROFILE ──
 function showProfile() {
   document.getElementById('dimensionsContainer').innerHTML = '';
-  DIMS.forEach((_, i) => {
-    const panels = document.querySelectorAll('.dimension-panel');
-    panels.forEach(p => p.classList.remove('active'));
-  });
   const panel = document.getElementById('profilePanel');
   panel.classList.add('active');
-
   const now = new Date();
   document.getElementById('profileTimestamp').textContent = `Evaluación: ${now.toLocaleDateString('es-PE')} ${now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'})}`;
 
-  // Warnings
   let warnings = '';
   const ncScore = state['NC.conciencia']?.score;
   if (ncScore !== null && String(ncScore) !== '0') {
     warnings += `<div class="gate-warning" style="display:block">⚠️ Conciencia alterada (NC = ${ncScore})</div>`;
   }
-  // NM warnings
   const nmSpecs = state['NM.coordinación']?.specifiers || {};
   Object.keys(nmSpecs).forEach(k => {
     if (k.endsWith('_sub') && nmSpecs[k] && nmSpecs[k].includes('⚠️')) {
@@ -1033,9 +1181,13 @@ function showProfile() {
       warnings += `<div class="gate-warning" style="display:block;background:var(--danger-bg);border-color:var(--danger);">⚠️ NM: ${parent} ${nmSpecs[k]}</div>`;
     }
   });
+  // Suicide warning
+  const desScore = state['F6.desesperanza']?.score;
+  if (desScore !== null && parseInt(desScore) <= -2) {
+    warnings += `<div class="gate-warning" style="display:block;background:var(--danger-bg);border-color:var(--danger);">⚠️ F6.desesperanza = ${desScore}: Evaluar riesgo suicida (plan, medio, intención, letalidad)</div>`;
+  }
   document.getElementById('profileWarnings').innerHTML = warnings;
 
-  // Table
   let tbody = '';
   DIMS.forEach(d => {
     if (d.type === 'two_axis') {
@@ -1044,16 +1196,17 @@ function showProfile() {
         const sColor = s !== null ? scoreColor(parseInt(s)) : '';
         tbody += `<tr><td>${ax.id}</td><td class="score-cell" style="color:${sColor}">${s !== null ? fmtScore(s) : '-'}</td><td class="spec-cell"></td></tr>`;
       });
+      const specs = formatSpecifiers(d);
+      if (specs) tbody += `<tr><td colspan="2" style="font-size:11px;color:var(--text-muted)">P especificadores</td><td class="spec-cell">${specs}</td></tr>`;
     } else {
       const s = state[d.id]?.score;
       const sColor = s !== null ? scoreColor(parseInt(s)) : '';
       const specs = formatSpecifiers(d);
-      tbody += `<tr><td>${d.id}</td><td class="score-cell" style="color:${sColor}">${s !== null ? fmtScore(s) : '-'}</td><td class="spec-cell">${specs}</td></tr>`;
+      const scoreLabel = s !== null && d.scores[s] ? d.scores[s] : '';
+      tbody += `<tr><td>${d.id}</td><td class="score-cell" style="color:${sColor}">${s !== null ? fmtScore(s) : '-'}</td><td class="spec-cell">${specs}${scoreLabel && specs ? ' — ' : ''}${scoreLabel ? '<i style="color:var(--text-muted)">'+scoreLabel+'</i>' : ''}</td></tr>`;
     }
   });
   document.getElementById('profileBody').innerHTML = tbody;
-
-  // Bar chart
   renderBarChart();
   renderSidebar();
   closeSidebarMobile();
@@ -1069,15 +1222,17 @@ function scoreColor(v) {
 }
 
 function formatSpecifiers(d) {
-  const specs = state[d.id]?.specifiers || {};
+  const dimId = d.type === 'two_axis' ? d.id : d.id;
+  const specs = state[dimId]?.specifiers || {};
   const parts = [];
   if (d.specifiers) {
     d.specifiers.forEach(sp => {
+      if (sp.id === 'oscila') { if (specs[sp.id]) parts.push('−2↔+2 [SD]'); return; }
       const v = specs[sp.id];
       if (!v) return;
       if (sp.type === 'checkbox' && v === true) {
         const sub = specs[sp.id + '_sub'];
-        parts.push(sub ? `${sp.label.replace(/[\[\]]/g,'')}: ${sub}` : sp.label);
+        parts.push(sub ? `${sp.label.replace(/[\[\]]/g,'').trim()}: ${sub}` : sp.label.trim());
       } else if (sp.type === 'radio' && v) {
         parts.push(v);
       }
@@ -1115,11 +1270,8 @@ function barRow(label, val, bipolar, max, negOnly) {
   if (val !== null) {
     if (bipolar) {
       const pct = (val / 2) * 50;
-      if (val >= 0) {
-        fillStyle = `left:50%;width:${Math.abs(pct)}%;background:${val>0?'var(--pos1)':'var(--zero)'}`;
-      } else {
-        fillStyle = `right:50%;width:${Math.abs(pct)}%;background:var(--neg1)`;
-      }
+      if (val >= 0) fillStyle = `left:50%;width:${Math.abs(pct)}%;background:${val>0?'var(--pos1)':'var(--zero)'}`;
+      else fillStyle = `right:50%;width:${Math.abs(pct)}%;background:var(--neg1)`;
     } else if (negOnly) {
       const pct = (Math.abs(val) / 2) * 100;
       fillStyle = `right:0;width:${pct}%;background:var(--neg1)`;
@@ -1141,42 +1293,39 @@ function generateProfileText() {
   const fecha = now.toLocaleDateString('es-PE');
   const hora = now.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit'});
   let lines = [`bMSE Profile — ${fecha} ${hora}`, ''];
-
-  // Gate
   const ncS = state['NC.conciencia']?.score;
   let ncLine = `GATE: NC.conciencia = ${ncS !== null ? ncS : '?'}`;
   const ncSpecs = formatSpecExport(DIMS[0]);
   if (ncSpecs) ncLine += ` ${ncSpecs}`;
   lines.push(ncLine);
   lines.push('---');
-
   DIMS.slice(1).forEach(d => {
     if (d.type === 'two_axis') {
       const s1 = state[d.axes[0].id]?.score;
       const s2 = state[d.axes[1].id]?.score;
-      lines.push(`${d.axes[0].id} = ${s1 !== null ? fmtScore(s1) : '?'} | ${d.axes[1].id} = ${s2 !== null ? fmtScore(s2) : '?'}`);
+      let line = `${d.axes[0].id} = ${s1 !== null ? fmtScore(s1) : '?'} | ${d.axes[1].id} = ${s2 !== null ? fmtScore(s2) : '?'}`;
+      const specs = formatSpecExport(d);
+      if (specs) line += ` ${specs}`;
+      lines.push(line);
     } else {
       const s = state[d.id]?.score;
       let line = `${d.id} = ${s !== null ? fmtScore(s) : '?'}`;
-      // Special: F5a oscila
-      if (d.id === 'F5a.control' && state[d.id]?.specifiers?.oscila) {
-        line = `${d.id} = -2↔2 [stimulus-dependent]`;
-      }
+      if (d.id === 'F5a.control' && state[d.id]?.specifiers?.oscila) line = `${d.id} = -2↔+2 [stimulus-dependent]`;
       const specs = formatSpecExport(d);
       if (specs) line += ` ${specs}`;
       lines.push(line);
     }
   });
-
   return lines.join('\n');
 }
 
 function formatSpecExport(d) {
-  const specs = state[d.id]?.specifiers || {};
+  const dimId = d.type === 'two_axis' ? d.id : d.id;
+  const specs = state[dimId]?.specifiers || {};
   const parts = [];
   if (d.specifiers) {
     d.specifiers.forEach(sp => {
-      if (sp.id === 'oscila') return; // handled specially
+      if (sp.id === 'oscila') return;
       const v = specs[sp.id];
       if (!v) return;
       if (sp.type === 'checkbox' && v === true) {
